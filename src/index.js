@@ -4,14 +4,16 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 var config = {
-    apiKey: "AIzaSyBOlsm9tL2ut4GEE93AEsa2OFAmqbVgKM8",
-    authDomain: "truekonnect-c91d4.firebaseapp.com",
-    databaseURL: "https://truekonnect-c91d4.firebaseio.com",
-    projectId: "truekonnect-c91d4",
-    storageBucket: "truekonnect-c91d4.appspot.com",
-    messagingSenderId: "776699990112"
+  apiKey: "AIzaSyAPolGXOq3CFjHYlmCNZAEWGz7kpi-4OtA",
+  authDomain: "true-konnect-mvp.firebaseapp.com",
+  databaseURL: "https://true-konnect-mvp.firebaseio.com",
+  projectId: "true-konnect-mvp",
+  storageBucket: "",
+  messagingSenderId: "776189930808"
 };
 firebase.initializeApp(config);
 
