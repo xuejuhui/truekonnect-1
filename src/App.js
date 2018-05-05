@@ -8,11 +8,6 @@ class App extends Component {
     return (
         <div className="App">
           <SignUpForm/>
-            <Checkout
-                name={'The Road to learn React'}
-                description={'Only the Book'}
-                amount={1}
-            />
         </div>);
   }
 }
