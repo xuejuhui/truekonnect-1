@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import firebase from 'firebase';
 import axios from 'axios';
 
-import {Form, FormGroup, Label, Input} from 'reactstrap';
+import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -38,13 +38,22 @@ class SignUpForm extends Component {
   render() {
     return (
       <Form>
-        <FormGroup>
-          <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" onChange={this.handleEmailTextChange} value={this.state.email} placeholder="with a placeholder"/>
+        <FormGroup row>
+          <Label for="exampleEmail" sm={2}>Email</Label>
+          <Col sm={8}>
+          <Input type="email" name="email" id="exampleEmail"  onChange={this.handleEmailTextChange} value={this.state.email} placeholder="with a placeholder"/>
+          </Col>
         </FormGroup>
-        <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" onChange={this.handlePassTextChange} value={this.state.password} placeholder="password placeholder"/>
+        <FormGroup row>
+          <Label for="examplePassword" sm={2}>Password</Label>
+          <Col sm={8}>
+          <Input type="password" name="password" id="examplePassword"   onChange={this.handlePassTextChange} value={this.state.password} placeholder="password placeholder"/>
+          </Col>
+        </FormGroup>
+        <FormGroup check row>
+          <Col sm={{ size: 2, offset: 5 }}>
+            <Button>Submit</Button>
+          </Col>
         </FormGroup>
       </Form>
     );
