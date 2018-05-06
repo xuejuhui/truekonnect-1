@@ -14,7 +14,7 @@ class StylistCard extends React.Component {
       <Col sm="8">
         <Card body>
           <CardTitle>{this.props.StylistName}</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+          <CardText>{this.props.StylistLocation}</CardText>
           <Button>Go somewhere</Button>
         </Card>
       </Col>
