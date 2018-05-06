@@ -13,8 +13,6 @@ import StylistCard from '../Components/Reusable/StylistCard';
 
 
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
-
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
 
