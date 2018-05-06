@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import firebase from 'firebase';
 import axios from 'axios';
 
+
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
 
 class SignUpForm extends Component {
