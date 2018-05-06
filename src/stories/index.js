@@ -19,4 +19,4 @@ storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
 
 storiesOf('Cards', module)
-  .add('Stylist Card', () => <StylistCard StylistName='Chris Jannenga' />)
+  .add('Stylist Card', () => <StylistCard StylistName='Chris Jannenga' StylistLocation='Phoenix, AZ' />)
