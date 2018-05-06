@@ -16,6 +16,7 @@ class StylistCard extends React.Component {
           <CardTitle>{this.props.StylistName}</CardTitle>
           <CardText>{this.props.StylistLocation}</CardText>
           <Button>Go somewhere</Button>
+          <Button>Blankness</Button>
         </Card>
       </Col>
     </Row>
