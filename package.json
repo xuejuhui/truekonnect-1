@@ -14,12 +14,20 @@
     "react-router": "^4.2.0",
     "react-scripts": "1.1.1",
     "react-stripe-checkout": "^2.6.3",
-    "reactstrap": "^6.0.1"
+    "reactstrap": "^6.0.1",
+    "storybook": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.4.3",
+    "@storybook/addon-actions": "^3.4.3",
+    "@storybook/addon-links": "^3.4.3"
   }
 }
