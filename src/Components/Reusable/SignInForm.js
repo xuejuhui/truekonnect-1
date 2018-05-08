@@ -1,64 +1,121 @@
 import React, {Component} from "react";
-import firebase from 'firebase';
-import axios from 'axios';
-
+import firebase, {recaptchaVerifier} from 'firebase';
 
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
 
 class SignUpForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            verificationCode: '',
+            phoneNumber: '',
+            confirmationResult: ''
+        };
+    }
+
+    componentDidMount() {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(this.recaptcha, {
+            'size': 'invisible',
+            'callback': (response) => {
+                return response
+            },
+            'expired-callback': () => {
+                // Response expired. Ask user to solve reCAPTCHA again.
+                // ...
+            }
+        });
+        window.recaptchaVerifier.render().then((widgetId) => {
+            window.recaptchaWidgetId = widgetId;
+        });
+    }
+
+    onButtonPress = () => {
+        const {phoneNumber} = this.state;
+        if (phoneNumber === '') {
+            return alert('Must fill in all fields')
+        }
+        this.phoneLogin()
     };
-  }
 
-  onButtonPress() {
-    const {email, password} = this.state;
+    phoneLogin = () => {
+        const phoneNumber = '+1' + this.state.phoneNumber;
+        let appVerifier = window.recaptchaVerifier;
+        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+            .then(function (confirmationResult) {
+                let code = prompt(`We have sent a code to ${phoneNumber}, please enter it here`, "");
+                if (code) {
+                    confirmationResult.confirm(code).then(function (result) {
+                        alert('Successfully logged in!')
+                    }).catch(function (error) {
+                        alert(error.message)
+                    });
+                }
+            }).catch(function (error) {
+            alert(error.message)
+        });
+    }
 
-  //   if (email === '' || password === '') {
-  //     return alert('Must fill in all fields')
-  //   }
-  //   return (firebase.auth().createUserWithEmailAndPassword(email, password)
-  //   // .then(() => axios.post('http://localhost:3000/users/new', {
-  //   //     email: email,
-  //   //     user_token: firebase.auth().currentUser.uid,
-  //   // }))
-  //   // .then(() => console.log('this works'))))
-}
+    handlePhoneNumberTextChange = (event) => {
+        this.setState({phoneNumber: event.target.value})
+    };
 
-  handleEmailTextChange = (event) => {
-    this.setState({email: event.target.value})
-  };
+    handlePassTextChange = (event) => {
+        this.setState({verificationCode: event.target.value})
+    };
 
-  handlePassTextChange = (event) => {
-    this.setState({password: event.target.value})
-  };
-
-  render() {
-    return (
-      <Form>
-        <FormGroup row>
-          <Label for="exampleEmail" sm={2}>Email</Label>
-          <Col sm={8}>
-          <Input type="email" name="email" id="exampleEmail"  onChange={this.handleEmailTextChange} value={this.state.email} placeholder="with a placeholder"/>
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label for="examplePassword" sm={2}>Password</Label>
-          <Col sm={8}>
-          <Input type="password" name="password" id="examplePassword"   onChange={this.handlePassTextChange} value={this.state.password} placeholder="password placeholder"/>
-          </Col>
-        </FormGroup>
-        <FormGroup check row>
-          <Col sm={{ size: 2, offset: 5 }}>
-            <Button>Submit</Button>
-          </Col>
-        </FormGroup>
-      </Form>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Form>
+                    <FormGroup row>
+                        <Label for="exampleEmail" sm={2}>Email</Label>
+                        <Col sm={8}>
+                            <Input type="email" name="email" id="exampleEmail" onChange={this.handleEmailTextChange}
+                                   value={this.state.email} placeholder="with a placeholder"/>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label for="examplePassword" sm={2}>Password</Label>
+                        <Col sm={8}>
+                            <Input type="password" name="password" id="examplePassword"
+                                   onChange={this.handlePassTextChange} value={this.state.password}
+                                   placeholder="password placeholder"/>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup check row>
+                        <Col sm={{size: 2, offset: 5}}>
+                            <Button>Submit</Button>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label for="examplePhoneNumber" sm={2}>Phone Number</Label>
+                        <Col sm={8}>
+                            <Input
+                                type="text"
+                                name="phoneNumber"
+                                id="examplePhoneNumber"
+                                onChange={this.handlePhoneNumberTextChange}
+                                value={this.state.phoneNumber}
+                                placeholder="with a placeholder"/>
+                        </Col>
+                    </FormGroup>
+                    <Col sm={{size: 2, offset: 4}}>
+                        <div ref={(ref) => this.recaptcha = ref}></div>
+                    </Col>
+                    <FormGroup check row>
+                        <Col sm={{size: 2, offset: 5}}>
+                            <Button onClick={(e) => {
+                                e.preventDefault();
+                                this.onButtonPress(e)
+                            }}>Send Code</Button>
+                        </Col>
+                    </FormGroup>
+                </Form>
+            </div>
+        );
+    }
 }
 
 export default SignUpForm;
