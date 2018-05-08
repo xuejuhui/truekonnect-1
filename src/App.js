@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import SignUpForm from "./Components/Reusable/SignUpForm";
+import SignUpForm from "./Components/Reusable/SignInForm";
 import StylistCard from './Components/Reusable/StylistCard';
 
 class App extends Component {

@@ -7,7 +7,7 @@ import { linkTo } from '@storybook/addon-links';
 
 
 
-import SignUpForm from '../Components/Reusable/SignUpForm';
+import SignUpForm from '../Components/Reusable/SignInForm';
 
 import StylistCard from '../Components/Reusable/StylistCard';
 
