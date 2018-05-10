@@ -12,47 +12,78 @@
  * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
-#include <gtest/gtest.h>
+#include <stdio.h>
+#include <string.h>
 
 #include <openssl/pool.h>
 
-#include "../test/test_util.h"
+#include "../internal.h"
 
 
-TEST(PoolTest, Unpooled) {
+static bool TestUnpooled() {
   static const uint8_t kData[4] = {1, 2, 3, 4};
   bssl::UniquePtr<CRYPTO_BUFFER> buf(
       CRYPTO_BUFFER_new(kData, sizeof(kData), nullptr));
-  ASSERT_TRUE(buf);
+  if (!buf) {
+    return false;
+  }
 
-  EXPECT_EQ(Bytes(kData),
-            Bytes(CRYPTO_BUFFER_data(buf.get()), CRYPTO_BUFFER_len(buf.get())));
+  if (CRYPTO_BUFFER_len(buf.get()) != sizeof(kData) ||
+      OPENSSL_memcmp(kData, CRYPTO_BUFFER_data(buf.get()), sizeof(kData)) !=
+          0) {
+    fprintf(stderr, "CRYPTO_BUFFER corrupted data.\n");
+    return false;
+  }
 
-  // Test that reference-counting works properly.
   CRYPTO_BUFFER_up_ref(buf.get());
   bssl::UniquePtr<CRYPTO_BUFFER> buf2(buf.get());
+
+  return true;
 }
 
-TEST(PoolTest, Empty) {
+static bool TestEmpty() {
   bssl::UniquePtr<CRYPTO_BUFFER> buf(CRYPTO_BUFFER_new(nullptr, 0, nullptr));
-  ASSERT_TRUE(buf);
+  if (!buf) {
+    return false;
+  }
 
-  EXPECT_EQ(Bytes(""),
-            Bytes(CRYPTO_BUFFER_data(buf.get()), CRYPTO_BUFFER_len(buf.get())));
+  return true;
 }
 
-TEST(PoolTest, Pooled) {
+static bool TestPool() {
   bssl::UniquePtr<CRYPTO_BUFFER_POOL> pool(CRYPTO_BUFFER_POOL_new());
-  ASSERT_TRUE(pool);
+  if (!pool) {
+    return false;
+  }
 
   static const uint8_t kData[4] = {1, 2, 3, 4};
   bssl::UniquePtr<CRYPTO_BUFFER> buf(
       CRYPTO_BUFFER_new(kData, sizeof(kData), pool.get()));
-  ASSERT_TRUE(buf);
+  if (!buf) {
+    return false;
+  }
 
   bssl::UniquePtr<CRYPTO_BUFFER> buf2(
       CRYPTO_BUFFER_new(kData, sizeof(kData), pool.get()));
-  ASSERT_TRUE(buf2);
+  if (!buf2) {
+    return false;
+  }
 
-  EXPECT_EQ(buf.get(), buf2.get()) << "CRYPTO_BUFFER_POOL did not dedup data.";
+  if (buf.get() != buf2.get()) {
+    fprintf(stderr, "CRYPTO_BUFFER_POOL did not dedup data.\n");
+    return false;
+  }
+
+  return true;
+}
+
+int main(int argc, char **argv) {
+  if (!TestUnpooled() ||
+      !TestEmpty() ||
+      !TestPool()) {
+    return 1;
+  }
+
+  printf("PASS\n");
+  return 0;
 }

@@ -6,6 +6,8 @@ import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import {Provider} from 'react-redux';
+import Store from './Redux/store';
 
 var config = {
     apiKey: "AIzaSyAPolGXOq3CFjHYlmCNZAEWGz7kpi-4OtA",
@@ -17,5 +19,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+let store = new Store();
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>, document.getElementById('root'));
 registerServiceWorker();

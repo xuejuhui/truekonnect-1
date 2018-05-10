@@ -11,10 +11,14 @@
     "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-scripts": "1.1.1",
     "react-stripe-checkout": "^2.6.3",
     "reactstrap": "^6.0.1",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^5.1.1",
     "storybook": "^1.0.0"
   },
   "scripts": {
@@ -27,8 +31,8 @@
     "storybook-surge-build": "build-storybook -c .storybook -o .out"
   },
   "devDependencies": {
-    "@storybook/react": "^3.4.3",
     "@storybook/addon-actions": "^3.4.3",
-    "@storybook/addon-links": "^3.4.3"
+    "@storybook/addon-links": "^3.4.3",
+    "@storybook/react": "^3.4.3"
   }
 }

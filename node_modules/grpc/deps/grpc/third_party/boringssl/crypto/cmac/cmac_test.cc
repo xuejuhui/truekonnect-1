@@ -16,8 +16,6 @@
 
 #include <algorithm>
 
-#include <gtest/gtest.h>
-
 #include <openssl/cipher.h>
 #include <openssl/cmac.h>
 #include <openssl/mem.h>
@@ -25,38 +23,73 @@
 #include "../test/test_util.h"
 
 
-static void test(const char *name, const uint8_t *key, size_t key_len,
-                 const uint8_t *msg, size_t msg_len, const uint8_t *expected) {
-  SCOPED_TRACE(name);
+static void dump(const uint8_t *got, const uint8_t *want, size_t len) {
+  hexdump(stderr, "got :", got, len);
+  hexdump(stderr, "want:", want, len);
+  fflush(stderr);
+}
 
-  // Test the single-shot API.
+static int test(const char *name, const uint8_t *key, size_t key_len,
+                const uint8_t *msg, size_t msg_len, const uint8_t *expected) {
   uint8_t out[16];
-  ASSERT_TRUE(AES_CMAC(out, key, key_len, msg, msg_len));
-  EXPECT_EQ(Bytes(expected, sizeof(out)), Bytes(out));
+
+  if (!AES_CMAC(out, key, key_len, msg, msg_len)) {
+    fprintf(stderr, "%s: AES_CMAC failed\n", name);
+    return 0;
+  }
+
+  if (CRYPTO_memcmp(out, expected, sizeof(out)) != 0) {
+    fprintf(stderr, "%s: CMAC result differs:\n", name);
+    dump(out, expected, sizeof(out));
+    return 0;
+  }
 
   bssl::UniquePtr<CMAC_CTX> ctx(CMAC_CTX_new());
-  ASSERT_TRUE(ctx);
-  ASSERT_TRUE(CMAC_Init(ctx.get(), key, key_len, EVP_aes_128_cbc(), NULL));
+  if (!ctx || !CMAC_Init(ctx.get(), key, key_len, EVP_aes_128_cbc(), NULL)) {
+    fprintf(stderr, "%s: CMAC_Init failed.\n", name);
+    return 0;
+  }
 
   for (unsigned chunk_size = 1; chunk_size <= msg_len; chunk_size++) {
-    SCOPED_TRACE(chunk_size);
-
-    ASSERT_TRUE(CMAC_Reset(ctx.get()));
+    if (!CMAC_Reset(ctx.get())) {
+      fprintf(stderr, "%s/%u: CMAC_Reset failed.\n", name, chunk_size);
+      return 0;
+    }
 
     size_t done = 0;
     while (done < msg_len) {
       size_t todo = std::min(msg_len - done, static_cast<size_t>(chunk_size));
-      ASSERT_TRUE(CMAC_Update(ctx.get(), msg + done, todo));
+      if (!CMAC_Update(ctx.get(), msg + done, todo)) {
+        fprintf(stderr, "%s/%u: CMAC_Update failed.\n", name, chunk_size);
+        return 0;
+      }
+
       done += todo;
     }
 
     size_t out_len;
-    ASSERT_TRUE(CMAC_Final(ctx.get(), out, &out_len));
-    EXPECT_EQ(Bytes(expected, sizeof(out)), Bytes(out, out_len));
+    if (!CMAC_Final(ctx.get(), out, &out_len)) {
+      fprintf(stderr, "%s/%u: CMAC_Final failed.\n", name, chunk_size);
+      return 0;
+    }
+
+    if (out_len != sizeof(out)) {
+      fprintf(stderr, "%s/%u: incorrect out_len: %u.\n", name, chunk_size,
+              static_cast<unsigned>(out_len));
+      return 0;
+    }
+
+    if (CRYPTO_memcmp(out, expected, sizeof(out)) != 0) {
+      fprintf(stderr, "%s/%u: CMAC result differs:\n", name, chunk_size);
+      dump(out, expected, sizeof(out));
+      return 0;
+    }
   }
+
+  return 1;
 }
 
-TEST(CMACTest, RFC4493TestVectors) {
+static int rfc_4493_test_vectors(void) {
   static const uint8_t kKey[16] = {
       0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6,
       0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c,
@@ -99,8 +132,21 @@ TEST(CMACTest, RFC4493TestVectors) {
       0xfc, 0x49, 0x74, 0x17, 0x79, 0x36, 0x3c, 0xfe,
   };
 
-  test("RFC 4493 #1", kKey, sizeof(kKey), NULL, 0, kOut1);
-  test("RFC 4493 #2", kKey, sizeof(kKey), kMsg2, sizeof(kMsg2), kOut2);
-  test("RFC 4493 #3", kKey, sizeof(kKey), kMsg3, sizeof(kMsg3), kOut3);
-  test("RFC 4493 #4", kKey, sizeof(kKey), kMsg4, sizeof(kMsg4), kOut4);
+  if (!test("RFC 4493 #1", kKey, sizeof(kKey), NULL, 0, kOut1) ||
+      !test("RFC 4493 #2", kKey, sizeof(kKey), kMsg2, sizeof(kMsg2), kOut2) ||
+      !test("RFC 4493 #3", kKey, sizeof(kKey), kMsg3, sizeof(kMsg3), kOut3) ||
+      !test("RFC 4493 #4", kKey, sizeof(kKey), kMsg4, sizeof(kMsg4), kOut4)) {
+    return 0;
+  }
+
+  return 1;
+}
+
+int main(int argc, char **argv) {
+  if (!rfc_4493_test_vectors()) {
+    return 1;
+  }
+
+  printf("PASS\n");
+  return 0;
 }
