@@ -12,12 +12,15 @@
  * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
+#include <stdio.h>
+#include <string.h>
+
+#include <openssl/crypto.h>
 #include <openssl/digest.h>
 #include <openssl/err.h>
 #include <openssl/hkdf.h>
 
-#include <gtest/gtest.h>
-
+#include "../internal.h"
 #include "../test/test_util.h"
 
 
@@ -35,7 +38,7 @@ struct HKDFTestVector {
   const uint8_t out[82];
 };
 
-// These test vectors are from RFC 5869.
+/* These test vectors are from RFC 5869. */
 static const HKDFTestVector kTests[] = {
   {
     EVP_sha256,
@@ -244,25 +247,50 @@ static const HKDFTestVector kTests[] = {
   },
 };
 
-TEST(HKDFTest, TestVectors) {
-  for (size_t i = 0; i < OPENSSL_ARRAY_SIZE(kTests); i++) {
-    SCOPED_TRACE(i);
-    const HKDFTestVector *test = &kTests[i];
+int main(void) {
+  CRYPTO_library_init();
 
+  for (size_t i = 0; i < OPENSSL_ARRAY_SIZE(kTests); i++) {
+    const HKDFTestVector *test = &kTests[i];
     uint8_t prk[EVP_MAX_MD_SIZE];
     size_t prk_len;
-    ASSERT_TRUE(HKDF_extract(prk, &prk_len, test->md_func(), test->ikm,
-                             test->ikm_len, test->salt, test->salt_len));
-    EXPECT_EQ(Bytes(test->prk, test->prk_len), Bytes(prk, prk_len));
-
+    if (!HKDF_extract(prk, &prk_len, test->md_func(), test->ikm, test->ikm_len,
+                      test->salt, test->salt_len)) {
+      fprintf(stderr, "Call to HKDF_extract failed\n");
+      ERR_print_errors_fp(stderr);
+      return 1;
+    }
+    if (prk_len != test->prk_len ||
+        OPENSSL_memcmp(prk, test->prk, test->prk_len) != 0) {
+      fprintf(stderr, "%zu: Resulting PRK does not match test vector\n", i);
+      return 1;
+    }
     uint8_t buf[82];
-    ASSERT_TRUE(HKDF_expand(buf, test->out_len, test->md_func(), prk, prk_len,
-                            test->info, test->info_len));
-    EXPECT_EQ(Bytes(test->out, test->out_len), Bytes(buf, test->out_len));
+    if (!HKDF_expand(buf, test->out_len, test->md_func(), prk, prk_len,
+                     test->info, test->info_len)) {
+      fprintf(stderr, "Call to HKDF_expand failed\n");
+      ERR_print_errors_fp(stderr);
+      return 1;
+    }
+    if (OPENSSL_memcmp(buf, test->out, test->out_len) != 0) {
+      fprintf(stderr,
+              "%zu: Resulting key material does not match test vector\n", i);
+      return 1;
+    }
 
-    ASSERT_TRUE(HKDF(buf, test->out_len, test->md_func(), test->ikm,
-                     test->ikm_len, test->salt, test->salt_len, test->info,
-                     test->info_len));
-    EXPECT_EQ(Bytes(test->out, test->out_len), Bytes(buf, test->out_len));
+    if (!HKDF(buf, test->out_len, test->md_func(), test->ikm, test->ikm_len,
+              test->salt, test->salt_len, test->info, test->info_len)) {
+      fprintf(stderr, "Call to HKDF failed\n");
+      ERR_print_errors_fp(stderr);
+      return 1;
+    }
+    if (OPENSSL_memcmp(buf, test->out, test->out_len) != 0) {
+      fprintf(stderr,
+              "%zu: Resulting key material does not match test vector\n", i);
+      return 1;
+    }
   }
+
+  printf("PASS\n");
+  return 0;
 }

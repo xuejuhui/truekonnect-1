@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import firebase, {recaptchaVerifier} from 'firebase';
+import {connect} from 'react-redux';
 
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
+import {getAllPersons} from "../../Redux/actions/persons";
 
 class SignUpForm extends Component {
     constructor(props) {
@@ -86,7 +88,9 @@ class SignUpForm extends Component {
                     </FormGroup>
                     <FormGroup check row>
                         <Col sm={{size: 2, offset: 5}}>
-                            <Button>Submit</Button>
+                            <Button>
+                                Submit
+                            </Button>
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -106,10 +110,12 @@ class SignUpForm extends Component {
                     </Col>
                     <FormGroup check row>
                         <Col sm={{size: 2, offset: 5}}>
-                            <Button onClick={(e) => {
+                            <Button onClick={e => {
                                 e.preventDefault();
                                 this.onButtonPress(e)
-                            }}>Send Code</Button>
+                            }}>
+                                Send Code
+                            </Button>
                         </Col>
                     </FormGroup>
                 </Form>
@@ -118,4 +124,18 @@ class SignUpForm extends Component {
     }
 }
 
-export default SignUpForm;
+const mapStateToProps = state => {
+    return {
+        persons: state.persons
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        gap: () => {
+            dispatch(getAllPersons())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)

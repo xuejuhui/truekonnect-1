@@ -12,21 +12,16 @@
  * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
-#include <openssl/curve25519.h>
-
 #include <string>
 
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
-#include <gtest/gtest.h>
+#include <openssl/curve25519.h>
 
 #include "../internal.h"
-#include "internal.h"
 
-
-// TODO(agl): add tests with fixed vectors once SPAKE2 is nailed down.
 
 struct SPAKE2Run {
   bool Run() {
@@ -45,13 +40,6 @@ struct SPAKE2Run {
 
     if (!alice || !bob) {
       return false;
-    }
-
-    if (alice_disable_password_scalar_hack) {
-      alice->disable_password_scalar_hack = 1;
-    }
-    if (bob_disable_password_scalar_hack) {
-      bob->disable_password_scalar_hack = 1;
     }
 
     uint8_t alice_msg[SPAKE2_MAX_MSG_SIZE];
@@ -98,60 +86,85 @@ struct SPAKE2Run {
   std::string bob_password = "password";
   std::pair<std::string, std::string> alice_names = {"alice", "bob"};
   std::pair<std::string, std::string> bob_names = {"bob", "alice"};
-  bool alice_disable_password_scalar_hack = false;
-  bool bob_disable_password_scalar_hack = false;
   int alice_corrupt_msg_bit = -1;
 
  private:
   bool key_matches_ = false;
 };
 
-TEST(SPAKE25519Test, SPAKE2) {
+static bool TestSPAKE2() {
   for (unsigned i = 0; i < 20; i++) {
     SPAKE2Run spake2;
-    ASSERT_TRUE(spake2.Run());
-    EXPECT_TRUE(spake2.key_matches());
+    if (!spake2.Run()) {
+      fprintf(stderr, "TestSPAKE2: SPAKE2 failed.\n");
+      return false;
+    }
+
+    if (!spake2.key_matches()) {
+      fprintf(stderr, "Key didn't match for equal passwords.\n");
+      return false;
+    }
   }
+
+  return true;
 }
 
-TEST(SPAKE25519Test, OldAlice) {
-  for (unsigned i = 0; i < 20; i++) {
-    SPAKE2Run spake2;
-    spake2.alice_disable_password_scalar_hack = true;
-    ASSERT_TRUE(spake2.Run());
-    EXPECT_TRUE(spake2.key_matches());
-  }
-}
-
-TEST(SPAKE25519Test, OldBob) {
-  for (unsigned i = 0; i < 20; i++) {
-    SPAKE2Run spake2;
-    spake2.bob_disable_password_scalar_hack = true;
-    ASSERT_TRUE(spake2.Run());
-    EXPECT_TRUE(spake2.key_matches());
-  }
-}
-
-TEST(SPAKE25519Test, WrongPassword) {
+static bool TestWrongPassword() {
   SPAKE2Run spake2;
   spake2.bob_password = "wrong password";
-  ASSERT_TRUE(spake2.Run());
-  EXPECT_FALSE(spake2.key_matches()) << "Key matched for unequal passwords.";
+  if (!spake2.Run()) {
+    fprintf(stderr, "TestSPAKE2: SPAKE2 failed.\n");
+    return false;
+  }
+
+  if (spake2.key_matches()) {
+    fprintf(stderr, "Key matched for unequal passwords.\n");
+    return false;
+  }
+
+  return true;
 }
 
-TEST(SPAKE25519Test, WrongNames) {
+static bool TestWrongNames() {
   SPAKE2Run spake2;
   spake2.alice_names.second = "charlie";
   spake2.bob_names.second = "charlie";
-  ASSERT_TRUE(spake2.Run());
-  EXPECT_FALSE(spake2.key_matches()) << "Key matched for unequal names.";
+  if (!spake2.Run()) {
+    fprintf(stderr, "TestSPAKE2: SPAKE2 failed.\n");
+    return false;
+  }
+
+  if (spake2.key_matches()) {
+    fprintf(stderr, "Key matched for unequal names.\n");
+    return false;
+  }
+
+  return true;
 }
 
-TEST(SPAKE25519Test, CorruptMessages) {
+static bool TestCorruptMessages() {
   for (int i = 0; i < 8 * SPAKE2_MAX_MSG_SIZE; i++) {
     SPAKE2Run spake2;
     spake2.alice_corrupt_msg_bit = i;
-    EXPECT_FALSE(spake2.Run() && spake2.key_matches())
-        << "Passed after corrupting Alice's message, bit " << i;
+    if (spake2.Run() && spake2.key_matches()) {
+      fprintf(stderr, "Passed after corrupting Alice's message, bit %d\n", i);
+      return false;
+    }
   }
+
+  return true;
+}
+
+/* TODO(agl): add tests with fixed vectors once SPAKE2 is nailed down. */
+
+int main(int argc, char **argv) {
+  if (!TestSPAKE2() ||
+      !TestWrongPassword() ||
+      !TestWrongNames() ||
+      !TestCorruptMessages()) {
+    return 1;
+  }
+
+  printf("PASS\n");
+  return 0;
 }

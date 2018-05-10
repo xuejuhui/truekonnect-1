@@ -14,12 +14,9 @@
 
 #include <stdio.h>
 
-#include <gtest/gtest.h>
-
 #include <openssl/asn1.h>
+#include <openssl/crypto.h>
 #include <openssl/err.h>
-
-#include "../test/test_util.h"
 
 
 // kTag128 is an ASN.1 structure with a universal tag with number 128.
@@ -41,22 +38,42 @@ static const uint8_t kTagOverflow[] = {
     0x1f, 0xff, 0xff, 0xff, 0xff, 0x7f, 0x01, 0x00,
 };
 
-TEST(ASN1Test, LargeTags) {
+static bool TestLargeTags() {
   const uint8_t *p = kTag258;
   bssl::UniquePtr<ASN1_TYPE> obj(d2i_ASN1_TYPE(NULL, &p, sizeof(kTag258)));
-  EXPECT_FALSE(obj) << "Parsed value with illegal tag" << obj->type;
+  if (obj) {
+    fprintf(stderr, "Parsed value with illegal tag (type = %d).\n", obj->type);
+    return false;
+  }
   ERR_clear_error();
 
   p = kTagOverflow;
   obj.reset(d2i_ASN1_TYPE(NULL, &p, sizeof(kTagOverflow)));
-  EXPECT_FALSE(obj) << "Parsed value with tag overflow" << obj->type;
+  if (obj) {
+    fprintf(stderr, "Parsed value with tag overflow (type = %d).\n", obj->type);
+    return false;
+  }
   ERR_clear_error();
 
   p = kTag128;
   obj.reset(d2i_ASN1_TYPE(NULL, &p, sizeof(kTag128)));
-  ASSERT_TRUE(obj);
-  EXPECT_EQ(128, obj->type);
-  const uint8_t kZero = 0;
-  EXPECT_EQ(Bytes(&kZero, 1), Bytes(obj->value.asn1_string->data,
-                                    obj->value.asn1_string->length));
+  if (!obj || obj->type != 128 || obj->value.asn1_string->length != 1 ||
+      obj->value.asn1_string->data[0] != 0) {
+    fprintf(stderr, "Failed to parse value with tag 128.\n");
+    ERR_print_errors_fp(stderr);
+    return false;
+  }
+
+  return true;
+}
+
+int main() {
+  CRYPTO_library_init();
+
+  if (!TestLargeTags()) {
+    return 1;
+  }
+
+  printf("PASS\n");
+  return 0;
 }
