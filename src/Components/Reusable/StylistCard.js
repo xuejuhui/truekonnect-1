@@ -1,7 +1,7 @@
 import React from 'react'
-import './App.css';
+import './stylist-card.css';
 
-import {Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col, Media} from 'reactstrap'
+import {Container, Card, CardImg, CardText, CardBody, CardTitle, Button, Row, Col, Media} from 'reactstrap'
 
 class StylistCard extends React.Component {
   constructor(props) {

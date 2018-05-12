@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import firebase, {recaptchaVerifier} from 'firebase';
+import firebase from 'firebase';
 import {connect} from 'react-redux';
 
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
