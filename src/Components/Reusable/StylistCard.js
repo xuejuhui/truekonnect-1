@@ -1,5 +1,5 @@
 import React from 'react'
-import import './App.css';
+import './App.css';
 
 import {Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col, Media} from 'reactstrap'
 
@@ -29,6 +29,11 @@ class StylistCard extends React.Component {
             </Col>
           </Row>
           <CardText>{this.props.StylistLocation}</CardText>
+          <CardText ClassName="user-description-text" {
+            constructor() {
+
+            }
+          }>Beach and vacations</CardText>
           <Button>Go somewhere</Button>
         </CardBody>
         </Card>
