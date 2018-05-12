@@ -1,4 +1,5 @@
 import React from 'react'
+import import './App.css';
 
 import {Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col, Media} from 'reactstrap'
 
