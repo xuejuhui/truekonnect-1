@@ -29,7 +29,7 @@ class StylistCard extends React.Component {
             </Col>
           </Row>
           <CardText>{this.props.StylistLocation}</CardText>
-          <CardText ClassName="user-description-text">Beach and vacations</CardText>
+          <CardText ClassName="user-description-text">vacations</CardText>
           <Button>Go somewhere</Button>
         </CardBody>
         </Card>
