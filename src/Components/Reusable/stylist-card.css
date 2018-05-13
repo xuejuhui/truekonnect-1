@@ -2,6 +2,49 @@
 
 }
 
-.user-description-text {
+.user-profile-image {
+  display: block;
+}
 
+.user-card-section-title {
+  text-transform: uppercase;
+}
+
+.user-description-text {
+  display: block;
+}
+
+.user-description-icon {
+  display: block;
+  text-align: center;
+}
+
+.vibe-or-not-buttons {
+  width: 40px;
+}
+
+.inline {
+  display: inline;
+}
+
+
+/* colors */
+
+.green {
+  color: #00cd47;
+  background-blend-mode: normal;
+}
+
+.red {
+  color: #ff6f59;
+}
+
+.dark-grey {
+  color: #808080;
+  background-blend-mode: normal;
+}
+
+.light-grey {
+  color: #c2c2c2;
+  background-blend-mode: normal;
 }
