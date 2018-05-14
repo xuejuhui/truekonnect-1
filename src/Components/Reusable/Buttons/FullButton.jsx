@@ -13,7 +13,7 @@ class FullButton extends Component {
   render() {
     return (
       <div>
-        <Button block outline color="primary">primary</Button>
+        <Button block outline className='true-konnect-green'>{this.props.ButtonText}</Button>
       </div>
     )
   }
