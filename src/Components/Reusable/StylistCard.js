@@ -22,7 +22,7 @@ class StylistCard extends React.Component {
               <Media object src="http://via.placeholder.com/42x42"  className ='rounded-circle user-profile-image' alt="Generic placeholder image" />
             </Col>
             <Col sm='9' className="align-self-center">
-              <CardTitle className="align-self-center">Teresa Young{/*this.props.StylistName*/}</CardTitle>
+              <CardTitle className="align-self-center">{this.props.StylistName}</CardTitle>
             </Col>
             <Col sm='1' className="float-right d-flex align-items-center justify-content-center">
               <i className="fas fa-ellipsis-h fa-lg"></i>
@@ -33,7 +33,7 @@ class StylistCard extends React.Component {
               <i className="fas fa-cut fa-lg dark-grey"></i>
             </Col>
             <Col sm="10" className="py-1">
-            <CardText className="user-description-text">Extensions, Chemical Perms, Ethnic Hair{this.props.StylistSpecialty}</CardText>
+            <CardText className="user-description-text">{this.props.StylistSpecialty}</CardText>
             </Col>
           </Row>
           <Row>
@@ -49,7 +49,7 @@ class StylistCard extends React.Component {
               <i className="fas fa-church fa-lg dark-grey"></i>
             </Col>
             <Col sm="10" className="py-1">
-            <CardText className="user-description-text">Christian{this.props.StylistReligion}</CardText>
+            <CardText className="user-description-text">{this.props.StylistReligion}</CardText>
             </Col>
           </Row>
           {/* <Row className="pt-2">
