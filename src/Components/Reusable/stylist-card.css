@@ -2,6 +2,10 @@ body {
   font-family: 'Roboto Light', sans-serif;
 }
 
+.card-title {
+  margin-bottom: 0;
+}
+
 .user-profile-image {
   display: block;
 }
@@ -15,28 +19,34 @@ body {
 }
 
 .vibe-or-not-buttons {
-  width: 38px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-/* colors */
-
-.green {
-  color: #00cd47;
-  background-blend-mode: normal;
+.user-options-button {
+  border-radius: 50rem;
+  padding: .2rem;
 }
 
-.red {
-  color: #ff6f59;
+
+/* icons */
+
+.user-description-fas {
+  color: var(--dark-grey);
 }
 
-.dark-grey {
-  color: #808080;
-  background-blend-mode: normal;
+.user-options-icon {
+  color: var(--light-grey);
 }
 
-.light-grey {
-  color: #c2c2c2;
-  background-blend-mode: normal;
+.user-options-icon:hover {
+  color: var(--dark-grey);
+}
+
+.fa-heart {
+  color: var(--red);
+}
+
+.fa-times {
+  color: var(--dark-grey);
 }

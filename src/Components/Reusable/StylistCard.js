@@ -25,12 +25,14 @@ class StylistCard extends React.Component {
               <CardTitle className="align-self-center">{this.props.StylistName}</CardTitle>
             </Col>
             <Col sm='1' className="float-right d-flex align-items-center justify-content-center">
-              <i className="fas fa-ellipsis-h fa-lg"></i>
+              <Button color="white" className="user-options-button">
+                <i className="fas fa-ellipsis-h fa-lg user-options-icon"></i>
+              </Button>
             </Col>
           </Row>
           <Row>
             <Col sm='2' className="py-1 d-flex align-items-center justify-content-center">
-              <i className="fas fa-cut fa-lg dark-grey"></i>
+              <i className="fas fa-cut fa-lg user-description-fas"></i>
             </Col>
             <Col sm="10" className="py-1">
             <CardText className="user-description-text">{this.props.StylistSpecialty}</CardText>
@@ -38,15 +40,15 @@ class StylistCard extends React.Component {
           </Row>
           <Row>
             <Col sm='2' className="py-1 d-flex align-items-center justify-content-center">
-              <i className="fas fa-id-card fa-lg dark-grey"></i>
+              <i className="fas fa-id-card fa-lg user-description-fas"></i>
             </Col>
             <Col sm="10" className="py-1">
-            <CardText className="user-description-text">11+{this.props.StylistExperience} years of experience</CardText>
+            <CardText className="user-description-text">{this.props.StylistExperience} years of experience</CardText>
             </Col>
           </Row>
           <Row>
             <Col sm='2' className="py-1 d-flex align-items-center justify-content-center">
-              <i className="fas fa-church fa-lg dark-grey"></i>
+              <i className="fas fa-church fa-lg user-description-fas"></i>
             </Col>
             <Col sm="10" className="py-1">
             <CardText className="user-description-text">{this.props.StylistReligion}</CardText>
@@ -63,8 +65,12 @@ class StylistCard extends React.Component {
             </Col>
           </Row>
           <Row className="d-flex justify-content-center">
-              <Button outline color="secondary" className="rounded-circle vibe-or-not-buttons"><i className="fas fa-times dark-grey"></i></Button>
-              <Button outline color="danger" className="rounded-circle vibe-or-not-buttons"><i className="fas fa-heart red"></i></Button>
+              <Button outline color="secondary" className="rounded-circle vibe-or-not-buttons">
+                <i className="fas fa-times"></i>
+              </Button>
+              <Button outline color="danger" className="rounded-circle vibe-or-not-buttons">
+                <i className="fas fa-heart"></i>
+              </Button>
           </Row>
         </CardBody>
         </Card>
