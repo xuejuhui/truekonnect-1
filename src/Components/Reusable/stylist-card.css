@@ -1,0 +1,42 @@
+body {
+  font-family: 'Roboto Light', sans-serif;
+}
+
+.user-profile-image {
+  display: block;
+}
+
+.user-card-section-title {
+  text-transform: uppercase;
+}
+
+.user-description-text {
+  display: block;
+}
+
+.vibe-or-not-buttons {
+  width: 38px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* colors */
+
+.green {
+  color: #00cd47;
+  background-blend-mode: normal;
+}
+
+.red {
+  color: #ff6f59;
+}
+
+.dark-grey {
+  color: #808080;
+  background-blend-mode: normal;
+}
+
+.light-grey {
+  color: #c2c2c2;
+  background-blend-mode: normal;
+}

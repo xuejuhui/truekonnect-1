@@ -26,6 +26,7 @@ storiesOf('Cards', module)
 storiesOf('Buttons', module)
   .add('Login', () => <FullButton ButtonText = 'Log In' />)
   .add('Sign Up', () => <FullButton ButtonText= 'Sign Up' />)
+  .add('Next', () => <FullButton ButtonText = 'Next' />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
