@@ -34,6 +34,7 @@ storiesOf('Buttons', module)
   .add('Age Range Desired', () => <FullButton ButtonText = 'Age Range Desired:' />)
   .add('Experience Desired', () => <FullButton ButtonText = 'Experience Desired:' />)
   .add('Zip Code', () => <FullButton ButtonText = 'Zip Code:' />)
+  .add('Search Radius', () => <FullButton ButtonText = 'Search Radius:' />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
