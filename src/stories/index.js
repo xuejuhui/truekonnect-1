@@ -7,6 +7,7 @@ import { linkTo } from '@storybook/addon-links';
 
 // import BRAND ASSET components here
 import FullLogo from '../Components/Reusable/Brand-Assets/FullLogo';
+import IntroCardGraphic from '../Components/Reusable/Brand-Assets/IntroCardGraphic'
 
 // import CARD components here
 import StylistCard from '../Components/Reusable/StylistCard';
@@ -22,6 +23,7 @@ import SignUpForm from '../Components/Reusable/SignInForm';
 
 storiesOf('Brand Assets', module)
   .add('Full Logo', () => <FullLogo />)
+  .add('Intro Card Graphic', () => <IntroCardGraphic />)
 
 storiesOf('Cards', module)
   .add('Stylist Card', () => <StylistCard StylistName = 'Teresa Young' StylistLocation = 'Scottsdale, AZ' StylistReligion = 'Christian' StylistExperience = '11+' StylistSpecialty = 'Extensions, Chemical Perms, Ethnic Hair' />)
