@@ -39,6 +39,7 @@ storiesOf('Buttons', module)
   .add('Contact Preference', () => <FullButton ButtonText = 'Contact Preference:' />)
   .add('Religion', () => <FullButton ButtonText = 'Religion:' />)
   .add('Match With Religions', () => <FullButton ButtonText = 'Match with Religions:' />)
+  .add('Ethnicity', () => <FullButton ButtonText = 'Ethnicity:' />)
   
 
 
