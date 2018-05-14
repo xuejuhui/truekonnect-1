@@ -1,4 +1,24 @@
-.true-konnect-green {
-  color: blue;
-  border-color: red;
+.active-button {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.active-button:hover {
+  color: white;
+  border-color: var(--green);
+  background-color: var(--green);
+}
+
+.inactive-button {
+  color: var(--super-light-grey);
+  border-color: var(--super-light-grey);
+  pointer-events: none;
+}
+
+.rounded-button {
+  border-radius: 50rem;
+  border-width: .1rem;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
 }

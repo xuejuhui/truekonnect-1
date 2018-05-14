@@ -1,0 +1,21 @@
+.app-logo {
+  height: 2.5rem;
+}
+
+.nav-buttons {
+  /* border: none; */
+  border-radius: 50rem;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.nav-fas {
+  color: var(--light-grey);
+  transition: 1s;
+}
+
+.nav-fas:hover{
+  color: var(--green);
+  transition: .25s;
+}

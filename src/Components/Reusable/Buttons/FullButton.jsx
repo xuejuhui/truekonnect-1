@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './full-button.css'
 
+
 import {Button} from 'reactstrap'
 
 class FullButton extends Component {
@@ -13,7 +14,7 @@ class FullButton extends Component {
   render() {
     return (
       <div>
-        <Button block outline className='true-konnect-green'>{this.props.ButtonText}</Button>
+        <Button block outline className='active-button rounded-button'>{this.props.ButtonText}</Button>
       </div>
     )
   }
