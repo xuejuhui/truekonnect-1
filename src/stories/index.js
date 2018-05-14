@@ -21,7 +21,7 @@ storiesOf('Brand Assets', module)
   .add('Full Logo', () => <FullLogo />)
 
 storiesOf('Cards', module)
-  .add('Stylist Card', () => <StylistCard StylistName='Chris Jannenga' StylistLocation='Phoenix, AZ' />)
+  .add('Stylist Card', () => <StylistCard StylistName = 'Teresa Young' StylistLocation = 'Scottsdale, AZ' StylistReligion = 'Christian' StylistExperience = '11+' StylistSpecialty = 'Extensions, Chemical Perms, Ethnic Hair' />)
 
 storiesOf('Buttons', module)
   .add('Login', () => <FullButton ButtonText = 'Log In' />)
