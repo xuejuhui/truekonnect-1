@@ -32,7 +32,7 @@ storiesOf('Buttons', module)
   .add('Match With', () => <FullButton ButtonText = 'Match with:' />)
   .add('Age', () => <FullButton ButtonText = 'Age:' />)
   .add('Age Range Desired', () => <FullButton ButtonText = 'Age Range Desired:' />)
-  
+  .add('Experience Desired', () => <FullButton ButtonText = 'Experience Desired:' />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
