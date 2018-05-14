@@ -27,6 +27,10 @@ storiesOf('Buttons', module)
   .add('Login', () => <FullButton ButtonText = 'Log In' />)
   .add('Sign Up', () => <FullButton ButtonText= 'Sign Up' />)
   .add('Next', () => <FullButton ButtonText = 'Next' />)
+  .add('User Type', () => <FullButton ButtonText = 'User Type:' />)
+  .add('Gender', () => <FullButton ButtonText = 'Gender: ' />)
+  .add('Match With', () => <FullButton ButtonText = 'Match with:' />)
+  .add('Age', () => <FullButton ButtonText = 'Age:' />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
