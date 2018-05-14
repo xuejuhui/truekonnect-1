@@ -41,6 +41,7 @@ storiesOf('Buttons', module)
   .add('Match With Religions', () => <FullButton ButtonText = 'Match with Religions:' />)
   .add('Ethnicity', () => <FullButton ButtonText = 'Ethnicity:' />)
   .add('Services Desired', () => <FullButton ButtonText = 'Services Desired:' />)
+  .add('Double Booking OK', () => <FullButton ButtonText = 'Double Booking OK:' />)
 
 
 storiesOf('Login', module)
