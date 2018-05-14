@@ -40,7 +40,7 @@ storiesOf('Buttons', module)
   .add('Religion', () => <FullButton ButtonText = 'Religion:' />)
   .add('Match With Religions', () => <FullButton ButtonText = 'Match with Religions:' />)
   .add('Ethnicity', () => <FullButton ButtonText = 'Ethnicity:' />)
-  
+  .add('Services Desired', () => <FullButton ButtonText = 'Services Desired:' />)
 
 
 storiesOf('Login', module)
