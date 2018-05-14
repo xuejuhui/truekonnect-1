@@ -37,6 +37,7 @@ storiesOf('Buttons', module)
   .add('Search Radius', () => <FullButton ButtonText = 'Search Radius:' />)
   .add('Willing to Spend', () => <FullButton ButtonText = 'Willing to Spend:' />)
   .add('Contact Preference', () => <FullButton ButtonText = 'Contact Preference:' />)
+  .add('Religion', () => <FullButton ButtonText = 'Religion:' />)
   
 
 storiesOf('Login', module)
