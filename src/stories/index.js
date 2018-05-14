@@ -42,6 +42,7 @@ storiesOf('Buttons', module)
   .add('Ethnicity', () => <FullButton ButtonText = 'Ethnicity:' />)
   .add('Services Desired', () => <FullButton ButtonText = 'Services Desired:' />)
   .add('Double Booking OK', () => <FullButton ButtonText = 'Double Booking OK:' />)
+  .add('Salon Types', () => <FullButton ButtonText = 'Salon Types:' />)
 
 
 storiesOf('Login', module)
