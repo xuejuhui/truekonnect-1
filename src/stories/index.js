@@ -6,22 +6,28 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 // import BRAND ASSET components here
-import FullLogo from '../Components/Reusable/Brand-Assets/FullLogo'
-
-// import FORM components here
-import SignUpForm from '../Components/Reusable/SignInForm';
+import FullLogo from '../Components/Reusable/Brand-Assets/FullLogo';
 
 // import CARD components here
 import StylistCard from '../Components/Reusable/StylistCard';
 
+//import NAVIGATION components here
+import NavBar from '../Components/Reusable/Navigation/NavBar';
+
 //import BUTTON components here
 import FullButton from '../Components/Reusable/Buttons/FullButton';
+
+// import FORM components here
+import SignUpForm from '../Components/Reusable/SignInForm';
 
 storiesOf('Brand Assets', module)
   .add('Full Logo', () => <FullLogo />)
 
 storiesOf('Cards', module)
   .add('Stylist Card', () => <StylistCard StylistName = 'Teresa Young' StylistLocation = 'Scottsdale, AZ' StylistReligion = 'Christian' StylistExperience = '11+' StylistSpecialty = 'Extensions, Chemical Perms, Ethnic Hair' />)
+
+storiesOf('Navigation', module)
+  .add('Top Navbar', () => <NavBar />)
 
 storiesOf('Buttons', module)
   .add('Login', () => <FullButton ButtonText = 'Log In' />)
