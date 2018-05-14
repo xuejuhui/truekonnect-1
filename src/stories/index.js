@@ -38,7 +38,9 @@ storiesOf('Buttons', module)
   .add('Willing to Spend', () => <FullButton ButtonText = 'Willing to Spend:' />)
   .add('Contact Preference', () => <FullButton ButtonText = 'Contact Preference:' />)
   .add('Religion', () => <FullButton ButtonText = 'Religion:' />)
+  .add('Match With Religions', () => <FullButton ButtonText = 'Match with Religions:' />)
   
+
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
