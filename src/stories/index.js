@@ -25,6 +25,14 @@ import PreviousButton from '../Components/Reusable/Buttons/PreviousButton';
 import NextButton from '../Components/Reusable/Buttons/NextButton';
 import InfoButton from '../Components/Reusable/Buttons/InfoButton';
 
+//import EMOJI components here
+import OneCandle from '../Components/Reusable/Emoji-Icons/Age/OneCandle'
+import TwoCandles from '../Components/Reusable/Emoji-Icons/Age/TwoCandles'
+import ThreeCandles from '../Components/Reusable/Emoji-Icons/Age/ThreeCandles'
+import FourCandles from '../Components/Reusable/Emoji-Icons/Age/FourCandles'
+import FiveCandles from '../Components/Reusable/Emoji-Icons/Age/FiveCandles'
+import SixCandles from '../Components/Reusable/Emoji-Icons/Age/SixCandles'
+
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
 
@@ -66,6 +74,17 @@ storiesOf('Buttons', module)
   .add('Previous Button', () => <PreviousButton />)
   .add('Next Button', () => <NextButton />)
   .add('Info Button', () => <InfoButton />)
+
+
+storiesOf('Emojis/Age', module)
+  .add('Teens', () => <OneCandle />)
+  .add('20s', () => <TwoCandles />)
+  .add('30s', () => <ThreeCandles />)
+  .add('40s', () => <FourCandles />)
+  .add('50s', () => <FiveCandles />)
+  .add('60s and Older', () => <SixCandles />)
+
+
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
