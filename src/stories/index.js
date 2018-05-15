@@ -18,6 +18,11 @@ import NavBar from '../Components/Reusable/Navigation/NavBar';
 
 //import BUTTON components here
 import FullButton from '../Components/Reusable/Buttons/FullButton';
+import HeartButton from '../Components/Reusable/Buttons/HeartButton';
+import XButton from '../Components/Reusable/Buttons/XButton';
+import PreviousButton from '../Components/Reusable/Buttons/PreviousButton';
+import NextButton from '../Components/Reusable/Buttons/NextButton';
+import InfoButton from '../Components/Reusable/Buttons/InfoButton';
 
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
@@ -54,7 +59,11 @@ storiesOf('Buttons', module)
   .add('Services Desired', () => <FullButton ButtonText = 'Services Desired:' />)
   .add('Double Booking OK', () => <FullButton ButtonText = 'Double Booking OK:' />)
   .add('Salon Types', () => <FullButton ButtonText = 'Salon Types:' />)
-
+  .add('Heart Button', () => <HeartButton />)
+  .add('X Button', () => <XButton />)
+  .add('Previous Button', () => <PreviousButton />)
+  .add('Next Button', () => <NextButton />)
+  .add('Info Button', () => <InfoButton />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
