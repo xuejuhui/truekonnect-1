@@ -3,6 +3,8 @@ import './stylist-card.css';
 
 import {Container, Card, CardImg, CardText, CardBody, CardTitle, Button, Row, Col, Media} from 'reactstrap'
 
+import HeartButton from './Buttons/HeartButton.jsx'
+
 class StylistCard extends React.Component {
   constructor(props) {
     super(props);
@@ -68,9 +70,7 @@ class StylistCard extends React.Component {
               <Button outline color="secondary" className="rounded-circle vibe-or-not-buttons">
                 <i className="fas fa-times"></i>
               </Button>
-              <Button outline color="danger" className="rounded-circle vibe-or-not-buttons">
-                <i className="fas fa-heart"></i>
-              </Button>
+              <HeartButton />
           </Row>
         </CardBody>
         </Card>
