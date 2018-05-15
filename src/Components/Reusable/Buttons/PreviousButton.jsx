@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './previous-button.css'
+import './float-buttons.css'
 
 
 import {Button} from 'reactstrap'
@@ -14,7 +14,7 @@ class PreviousButton extends Component {
   render() {
     return (
       <div>
-        <Button color="white" className="rounded-circle vibe-or-not-buttons shadow-sm">
+        <Button color="white" className="rounded-circle float-buttons">
           <i className="fas fa-times"></i>
         </Button>
       </div>

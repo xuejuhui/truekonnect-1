@@ -3,7 +3,9 @@ import './stylist-card.css';
 
 import {Container, Card, CardImg, CardText, CardBody, CardTitle, Button, Row, Col, Media} from 'reactstrap'
 
+// Import Buttons here
 import HeartButton from './Buttons/HeartButton.jsx'
+import XButton from './Buttons/XButton.jsx'
 
 class StylistCard extends React.Component {
   constructor(props) {
@@ -50,7 +52,7 @@ class StylistCard extends React.Component {
           </Row>
           <Row>
             <Col sm='2' className="py-1 d-flex align-items-center justify-content-center">
-              <i className="fas fa-church fa-lg user-description-fas"></i>
+              <i className="fas fa-comment fa-lg user-description-fas"></i>
             </Col>
             <Col sm="10" className="py-1">
             <CardText className="user-description-text">{this.props.StylistReligion}</CardText>
@@ -67,9 +69,7 @@ class StylistCard extends React.Component {
             </Col>
           </Row>
           <Row className="d-flex justify-content-center">
-              <Button outline color="secondary" className="rounded-circle vibe-or-not-buttons">
-                <i className="fas fa-times"></i>
-              </Button>
+              <XButton />
               <HeartButton />
           </Row>
         </CardBody>
