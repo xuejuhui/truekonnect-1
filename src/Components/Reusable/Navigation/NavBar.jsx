@@ -3,8 +3,10 @@ import './navbar.css'
 
 import {Container, Button, Row, Col, Media} from 'reactstrap'
 
-//import Icon here
+//import icons & buttons here
 import IconGraphic from '../Brand-Assets/IconGraphic';
+import ProfileButton from './ProfileButton';
+import MessagingButton from './MessagingButton';
 
 class NavBar extends Component {
   render() {
@@ -12,15 +14,9 @@ class NavBar extends Component {
       <div>
         <Container className="pt-2">
           <Row className="d-flex justify-content-between align-items-center">
-            <Button color="white" className="nav-buttons">
-              <i className="fas fa-user-circle fa-2x nav-fas"></i>
-            </Button>
-            <Button color="white" className="nav-buttons">
-              <IconGraphic/>
-            </Button>
-            <Button color="white" className="nav-buttons">
-              <i className="fas fa-comments fa-2x nav-fas"></i>
-            </Button>
+            <ProfileButton />
+            <IconGraphic/>
+            <MessagingButton />
           </Row>
         </Container>
       </div>

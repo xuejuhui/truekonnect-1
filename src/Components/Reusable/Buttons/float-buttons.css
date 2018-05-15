@@ -1,0 +1,11 @@
+.float-buttons {
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: .5s;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.float-buttons:hover {
+  transform: scale(1.1);
+  transition: .25s;
+}

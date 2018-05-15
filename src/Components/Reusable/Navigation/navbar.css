@@ -1,5 +1,11 @@
 .app-logo {
   height: 2.5rem;
+  transition: .5s;
+}
+
+.app-logo:hover {
+  transform: scale(1.1);
+  transition: .25s;
 }
 
 .nav-buttons {
@@ -12,10 +18,11 @@
 
 .nav-fas {
   color: var(--light-grey);
-  transition: 1s;
+  transition: .5s;
 }
 
 .nav-fas:hover{
   color: var(--green);
+  transform: scale(1.1);
   transition: .25s;
 }
