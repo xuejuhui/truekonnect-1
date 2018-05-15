@@ -12,6 +12,7 @@ import IconGraphic from '../Components/Reusable/Brand-Assets/IconGraphic'
 
 // import CARD components here
 import StylistCard from '../Components/Reusable/StylistCard';
+import ProfileBuildCard from '../Components/Reusable/Cards/ProfileBuildCard'
 
 //import NAVIGATION components here
 import NavBar from '../Components/Reusable/Navigation/NavBar';
@@ -34,6 +35,7 @@ storiesOf('Brand Assets', module)
 
 storiesOf('Cards', module)
   .add('Stylist Card', () => <StylistCard StylistName = 'Teresa Young' StylistLocation = 'Scottsdale, AZ' StylistReligion = 'Christian' StylistExperience = '11+' StylistSpecialty = 'Extensions, Chemical Perms, Ethnic Hair' />)
+  .add('Profile Building', () => <ProfileBuildCard />)
 
 storiesOf('Navigation', module)
   .add('Top Navbar', () => <NavBar />)
