@@ -153,7 +153,7 @@ storiesOf('Emojis/Religion', module)
   .add('Spiritual/Other', () => <SpiritualEmoji />)
   .add('None', () => <NoneEmoji />)
 
-storiesOf('Emojis/Religion', module)
+storiesOf('Emojis/Ethnicity', module)
   .add('White/Caucasian', () => <WhiteEmoji />)
   .add('Black/African Descent', () => <BlackEmoji />)
   .add('Hispanic/Latino', () => <HispanicEmoji />)
