@@ -54,6 +54,13 @@ import InstagramEmoji from '../Components/Reusable/Emoji-Icons/Communication/Ins
 import PhoneEmoji from '../Components/Reusable/Emoji-Icons/Communication/PhoneEmoji'
 import SMSEmoji from '../Components/Reusable/Emoji-Icons/Communication/SMSEmoji'
 
+import ChristianEmoji from '../Components/Reusable/Emoji-Icons/Religion/ChristianEmoji'
+import JewishEmoji from '../Components/Reusable/Emoji-Icons/Religion/JewishEmoji'
+import Mormon from '../Components/Reusable/Emoji-Icons/Religion/Mormon'
+import MuslimEmoji from '../Components/Reusable/Emoji-Icons/Religion/MuslimEmoji'
+import SpiritualEmoji from '../Components/Reusable/Emoji-Icons/Religion/SpiritualEmoji'
+import NoneEmoji from '../Components/Reusable/Emoji-Icons/Religion/NoneEmoji'
+
 
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
@@ -123,13 +130,21 @@ storiesOf('Emojis/Money', module)
   .add('500-1000', () => <MoneyFive />)
   .add('1000+', () => <MoneySix />)
 
-  storiesOf('Emojis/Communication', module)
-    .add('Phone', () => <PhoneEmoji />)
-    .add('Text', () => <SMSEmoji />)
-    .add('Email', () => <EmailEmoji />)
-    .add('Instagram', () => <InstagramEmoji />)
-    .add('Carrier Pidgeon', () => <CarrierPidgeonEmoji />)
-    .add('Messenger', () => <FacebookMessengerEmoji />)
+storiesOf('Emojis/Communication', module)
+  .add('Phone', () => <PhoneEmoji />)
+  .add('Text', () => <SMSEmoji />)
+  .add('Email', () => <EmailEmoji />)
+  .add('Instagram', () => <InstagramEmoji />)
+  .add('Carrier Pidgeon', () => <CarrierPidgeonEmoji />)
+  .add('Messenger', () => <FacebookMessengerEmoji />)
+
+storiesOf('Emojis/Religion', module)
+  .add('Christian', () => <ChristianEmoji />)
+  .add('Jewish', () => <JewishEmoji />)
+  .add('Mormon', () => <Mormon />)
+  .add('Muslim', () => <MuslimEmoji />)
+  .add('Spiritual/Other', () => <SpiritualEmoji />)
+  .add('None', () => <NoneEmoji />)
 
 
 
