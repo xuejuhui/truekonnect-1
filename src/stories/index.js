@@ -61,6 +61,13 @@ import MuslimEmoji from '../Components/Reusable/Emoji-Icons/Religion/MuslimEmoji
 import SpiritualEmoji from '../Components/Reusable/Emoji-Icons/Religion/SpiritualEmoji'
 import NoneEmoji from '../Components/Reusable/Emoji-Icons/Religion/NoneEmoji'
 
+import WhiteEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/WhiteEmoji'
+import BlackEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/BlackEmoji'
+import HispanicEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/HispanicEmoji'
+import AsianEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/AsianEmoji'
+import NativeEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/NativeEmoji'
+import OtherEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/OtherEmoji'
+
 
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
@@ -145,6 +152,14 @@ storiesOf('Emojis/Religion', module)
   .add('Muslim', () => <MuslimEmoji />)
   .add('Spiritual/Other', () => <SpiritualEmoji />)
   .add('None', () => <NoneEmoji />)
+
+storiesOf('Emojis/Religion', module)
+  .add('White/Caucasian', () => <WhiteEmoji />)
+  .add('Black/African Descent', () => <BlackEmoji />)
+  .add('Hispanic/Latino', () => <HispanicEmoji />)
+  .add('Asain/Pacific Islander', () => <AsianEmoji />)
+  .add('Native American/Alaskan', () => <NativeEmoji />)
+  .add('Other', () => <OtherEmoji />)
 
 
 
