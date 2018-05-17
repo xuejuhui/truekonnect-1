@@ -83,6 +83,9 @@ import SpecialOccasionEmoji from '../Components/Reusable/Emoji-Icons/Services/Sp
 import StraighteningEmoji from '../Components/Reusable/Emoji-Icons/Services/StraighteningEmoji'
 import WomensHaircutsEmoji from '../Components/Reusable/Emoji-Icons/Services/WomensHaircutsEmoji'
 
+import AlwaysEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/AlwaysEmoji'
+import SometimesEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/SometimesEmoji'
+import NeverEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/NeverEmoji'
 
 
 // import FORM components here
@@ -192,6 +195,11 @@ storiesOf('Emojis/Services', module)
   .add('Straightening Treatments', () => <StraighteningEmoji />)
   .add('Hair Loss Treatments', () => <HairLossEmoji />)
   .add('Makeup', () => <MakeupEmoji />)
+
+storiesOf('Emojis/Double Booking', module)
+  .add('Always', () => <AlwaysEmoji />)
+  .add('Sometimes', () => <SometimesEmoji />)
+  .add('Never', () => <NeverEmoji />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
