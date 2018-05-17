@@ -16,6 +16,8 @@ import ProfileBuildCard from '../Components/Reusable/Cards/ProfileBuildCard'
 
 //import NAVIGATION components here
 import NavBar from '../Components/Reusable/Navigation/NavBar';
+import ProfileButton from '../Components/Reusable/Navigation/ProfileButton'
+import MessagingButton from '../Components/Reusable/Navigation/MessagingButton'
 
 //import BUTTON components here
 import FullButton from '../Components/Reusable/Buttons/FullButton';
@@ -68,6 +70,27 @@ import AsianEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/AsianEmoji'
 import NativeEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/NativeEmoji'
 import OtherEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/OtherEmoji'
 
+import BraidsEmoji from '../Components/Reusable/Emoji-Icons/Services/BraidsEmoji'
+import ChemicalPermsEmoji from '../Components/Reusable/Emoji-Icons/Services/ChemicalPermsEmoji'
+import EthnicHairEmoji from '../Components/Reusable/Emoji-Icons/Services/EthnicHairEmoji'
+import HairColorEmoji from '../Components/Reusable/Emoji-Icons/Services/HairColorEmoji'
+import HairExtensionsEmoji from '../Components/Reusable/Emoji-Icons/Services/HairExtensionsEmoji'
+import HairLossEmoji from '../Components/Reusable/Emoji-Icons/Services/HairLossEmoji'
+import KidsHaircutsEmoji from '../Components/Reusable/Emoji-Icons/Services/KidsHaircutsEmoji'
+import MakeupEmoji from '../Components/Reusable/Emoji-Icons/Services/MakeupEmoji'
+import MensHaircutsEmoji from '../Components/Reusable/Emoji-Icons/Services/MensHaircutsEmoji'
+import SpecialOccasionEmoji from '../Components/Reusable/Emoji-Icons/Services/SpecialOccasionEmoji'
+import StraighteningEmoji from '../Components/Reusable/Emoji-Icons/Services/StraighteningEmoji'
+import WomensHaircutsEmoji from '../Components/Reusable/Emoji-Icons/Services/WomensHaircutsEmoji'
+
+import AlwaysEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/AlwaysEmoji'
+import SometimesEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/SometimesEmoji'
+import NeverEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/NeverEmoji'
+
+import OwnEmoji from '../Components/Reusable/Emoji-Icons/Salon-Ownership/OwnEmoji'
+import ShareEmoji from '../Components/Reusable/Emoji-Icons/Salon-Ownership/ShareEmoji'
+import MobileEmoji from '../Components/Reusable/Emoji-Icons/Salon-Ownership/MobileEmoji'
+
 
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
@@ -83,6 +106,8 @@ storiesOf('Cards', module)
 
 storiesOf('Navigation', module)
   .add('Top Navbar', () => <NavBar />)
+  .add('Profile', () => <ProfileButton />)
+  .add('Messaging', () => <MessagingButton />)
 
 storiesOf('Buttons', module)
   .add('Login', () => <FullButton ButtonText = 'Log In' />)
@@ -161,7 +186,29 @@ storiesOf('Emojis/Ethnicity', module)
   .add('Native American/Alaskan', () => <NativeEmoji />)
   .add('Other', () => <OtherEmoji />)
 
+storiesOf('Emojis/Services', module)
+  .add('Women\'s Haircuts', () => <WomensHaircutsEmoji />)
+  .add('Men\'s Haircuts', () => <MensHaircutsEmoji />)
+  .add('Kids\'s Haircuts', () => <KidsHaircutsEmoji />)
+  .add('Hair Extwnsions', () => <HairExtensionsEmoji />)
+  .add('Hair Color', () => <HairColorEmoji />)
+  .add('Special Occasion Styles', () => <SpecialOccasionEmoji />)
+  .add('Chemical Perms', () => <ChemicalPermsEmoji />)
+  .add('Ethnic Hair', () => <EthnicHairEmoji />)
+  .add('Braids/Twists', () => <BraidsEmoji />)
+  .add('Straightening Treatments', () => <StraighteningEmoji />)
+  .add('Hair Loss Treatments', () => <HairLossEmoji />)
+  .add('Makeup', () => <MakeupEmoji />)
 
+storiesOf('Emojis/Double Booking', module)
+  .add('Always', () => <AlwaysEmoji />)
+  .add('Sometimes', () => <SometimesEmoji />)
+  .add('Never', () => <NeverEmoji />)
+
+storiesOf('Emojis/Salon Ownership', module)
+  .add('Entirely Their Own', () => <OwnEmoji />)
+  .add('Shared with Others', () => <ShareEmoji />)
+  .add('Nonexistant! (mobile)', () => <MobileEmoji />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
