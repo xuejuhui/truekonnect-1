@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
 import {getAllPersons} from "../../Redux/actions/persons";
 
+
 class SignUpForm extends Component {
     constructor(props) {
         super(props);
@@ -123,6 +124,8 @@ class SignUpForm extends Component {
         );
     }
 }
+
+
 
 const mapStateToProps = state => {
     return {
