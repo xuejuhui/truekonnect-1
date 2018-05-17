@@ -47,6 +47,13 @@ import MoneyFour from '../Components/Reusable/Emoji-Icons/Money/MoneyFour'
 import MoneyFive from '../Components/Reusable/Emoji-Icons/Money/MoneyFive'
 import MoneySix from '../Components/Reusable/Emoji-Icons/Money/MoneySix'
 
+import CarrierPidgeonEmoji from '../Components/Reusable/Emoji-Icons/Communication/CarrierPidgeonEmoji'
+import EmailEmoji from '../Components/Reusable/Emoji-Icons/Communication/EmailEmoji'
+import FacebookMessengerEmoji from '../Components/Reusable/Emoji-Icons/Communication/FacebookMessengerEmoji'
+import InstagramEmoji from '../Components/Reusable/Emoji-Icons/Communication/InstagramEmoji'
+import PhoneEmoji from '../Components/Reusable/Emoji-Icons/Communication/PhoneEmoji'
+import SMSEmoji from '../Components/Reusable/Emoji-Icons/Communication/SMSEmoji'
+
 
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
@@ -115,6 +122,14 @@ storiesOf('Emojis/Money', module)
   .add('250-500', () => <MoneyFour />)
   .add('500-1000', () => <MoneyFive />)
   .add('1000+', () => <MoneySix />)
+
+  storiesOf('Emojis/Communication', module)
+    .add('Phone', () => <PhoneEmoji />)
+    .add('Text', () => <SMSEmoji />)
+    .add('Email', () => <EmailEmoji />)
+    .add('Instagram', () => <InstagramEmoji />)
+    .add('Carrier Pidgeon', () => <CarrierPidgeonEmoji />)
+    .add('Messenger', () => <FacebookMessengerEmoji />)
 
 
 
