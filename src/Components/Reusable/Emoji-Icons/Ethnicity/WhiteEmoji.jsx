@@ -6,7 +6,7 @@ import {} from 'reactstrap'
 class WhiteEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div class="WhiteEmoji emojis"></div>
     )
   }
 }

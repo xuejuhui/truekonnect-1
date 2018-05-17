@@ -15,7 +15,7 @@ class PreviousButton extends Component {
     return (
       <div>
         <Button color="white" className="rounded-circle float-buttons">
-          <i className="fas fa-times"></i>
+          <i className="fas fa-chevron-left"></i>
         </Button>
       </div>
     )

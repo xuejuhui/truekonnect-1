@@ -6,7 +6,9 @@ import {} from 'reactstrap'
 class CarrierPidgeonEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div>
+        <div class="CarrierPidgeonEmoji emojis"></div>
+      </div>
     )
   }
 }
