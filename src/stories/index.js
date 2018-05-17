@@ -70,6 +70,20 @@ import AsianEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/AsianEmoji'
 import NativeEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/NativeEmoji'
 import OtherEmoji from '../Components/Reusable/Emoji-Icons/Ethnicity/OtherEmoji'
 
+import BraidsEmoji from '../Components/Reusable/Emoji-Icons/Services/BraidsEmoji'
+import ChemicalPermsEmoji from '../Components/Reusable/Emoji-Icons/Services/ChemicalPermsEmoji'
+import EthnicHairEmoji from '../Components/Reusable/Emoji-Icons/Services/EthnicHairEmoji'
+import HairColorEmoji from '../Components/Reusable/Emoji-Icons/Services/HairColorEmoji'
+import HairExtensionsEmoji from '../Components/Reusable/Emoji-Icons/Services/HairExtensionsEmoji'
+import HairLossEmoji from '../Components/Reusable/Emoji-Icons/Services/HairLossEmoji'
+import KidsHaircutsEmoji from '../Components/Reusable/Emoji-Icons/Services/KidsHaircutsEmoji'
+import MakeupEmoji from '../Components/Reusable/Emoji-Icons/Services/MakeupEmoji'
+import MensHaircutsEmoji from '../Components/Reusable/Emoji-Icons/Services/MensHaircutsEmoji'
+import SpecialOccasionEmoji from '../Components/Reusable/Emoji-Icons/Services/SpecialOccasionEmoji'
+import StraighteningEmoji from '../Components/Reusable/Emoji-Icons/Services/StraighteningEmoji'
+import WomensHaircutsEmoji from '../Components/Reusable/Emoji-Icons/Services/WomensHaircutsEmoji'
+
+
 
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
@@ -86,7 +100,7 @@ storiesOf('Cards', module)
 storiesOf('Navigation', module)
   .add('Top Navbar', () => <NavBar />)
   .add('Profile', () => <ProfileButton />)
-  .add('Messaging', () => <MessaginButton />)
+  .add('Messaging', () => <MessagingButton />)
 
 storiesOf('Buttons', module)
   .add('Login', () => <FullButton ButtonText = 'Log In' />)
@@ -165,7 +179,19 @@ storiesOf('Emojis/Ethnicity', module)
   .add('Native American/Alaskan', () => <NativeEmoji />)
   .add('Other', () => <OtherEmoji />)
 
-
+storiesOf('Emojis/Services', module)
+  .add('Women\'s Haircuts', () => <WomensHaircutsEmoji />)
+  .add('Men\'s Haircuts', () => <MensHaircutsEmoji />)
+  .add('Kids\'s Haircuts', () => <KidsHaircutsEmoji />)
+  .add('Hair Extwnsions', () => <HairExtensionsEmoji />)
+  .add('Hair Color', () => <HairColorEmoji />)
+  .add('Special Occasion Styles', () => <SpecialOccasionEmoji />)
+  .add('Chemical Perms', () => <ChemicalPermsEmoji />)
+  .add('Ethnic Hair', () => <EthnicHairEmoji />)
+  .add('Braids/Twists', () => <BraidsEmoji />)
+  .add('Straightening Treatments', () => <StraighteningEmoji />)
+  .add('Hair Loss Treatments', () => <HairLossEmoji />)
+  .add('Makeup', () => <MakeupEmoji />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
