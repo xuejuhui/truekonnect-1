@@ -33,6 +33,21 @@ import FourCandles from '../Components/Reusable/Emoji-Icons/Age/FourCandles'
 import FiveCandles from '../Components/Reusable/Emoji-Icons/Age/FiveCandles'
 import SixCandles from '../Components/Reusable/Emoji-Icons/Age/SixCandles'
 
+import ClientEmoji from '../Components/Reusable/Emoji-Icons/User-Types/ClientEmoji'
+import StylistEmoji from '../Components/Reusable/Emoji-Icons/User-Types/StylistEmoji'
+
+import MaleEmoji from '../Components/Reusable/Emoji-Icons/Gender/MaleEmoji'
+import FemaleEmoji from '../Components/Reusable/Emoji-Icons/Gender/FemaleEmoji'
+import LGBTQEmoji from '../Components/Reusable/Emoji-Icons/Gender/LGBTQEmoji'
+
+import MoneyOne from '../Components/Reusable/Emoji-Icons/Money/MoneyOne'
+import MoneyTwo from '../Components/Reusable/Emoji-Icons/Money/MoneyTwo'
+import MoneyThree from '../Components/Reusable/Emoji-Icons/Money/MoneyThree'
+import MoneyFour from '../Components/Reusable/Emoji-Icons/Money/MoneyFour'
+import MoneyFive from '../Components/Reusable/Emoji-Icons/Money/MoneyFive'
+import MoneySix from '../Components/Reusable/Emoji-Icons/Money/MoneySix'
+
+
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
 
@@ -83,6 +98,23 @@ storiesOf('Emojis/Age', module)
   .add('40s', () => <FourCandles />)
   .add('50s', () => <FiveCandles />)
   .add('60s and Older', () => <SixCandles />)
+
+storiesOf('Emojis/Gender', module)
+  .add('Male', () => <MaleEmoji />)
+  .add('Female', () => <FemaleEmoji />)
+  .add('LGBTQ+', () => <LGBTQEmoji />)
+
+storiesOf('Emojis/User-Type', module)
+  .add('Client', () => <ClientEmoji />)
+  .add('Stylist', () => <StylistEmoji />)
+
+storiesOf('Emojis/Money', module)
+  .add('0-50', () => <MoneyOne />)
+  .add('50-100', () => <MoneyTwo />)
+  .add('100-250', () => <MoneyThree />)
+  .add('250-500', () => <MoneyFour />)
+  .add('500-1000', () => <MoneyFive />)
+  .add('1000+', () => <MoneySix />)
 
 
 
