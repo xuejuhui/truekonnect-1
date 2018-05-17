@@ -87,6 +87,10 @@ import AlwaysEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/AlwaysEm
 import SometimesEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/SometimesEmoji'
 import NeverEmoji from '../Components/Reusable/Emoji-Icons/Double-Book/NeverEmoji'
 
+import OwnEmoji from '../Components/Reusable/Emoji-Icons/Salon-Ownership/OwnEmoji'
+import ShareEmoji from '../Components/Reusable/Emoji-Icons/Salon-Ownership/ShareEmoji'
+import MobileEmoji from '../Components/Reusable/Emoji-Icons/Salon-Ownership/MobileEmoji'
+
 
 // import FORM components here
 import SignUpForm from '../Components/Reusable/SignInForm';
@@ -200,6 +204,11 @@ storiesOf('Emojis/Double Booking', module)
   .add('Always', () => <AlwaysEmoji />)
   .add('Sometimes', () => <SometimesEmoji />)
   .add('Never', () => <NeverEmoji />)
+
+storiesOf('Emojis/Salon Ownership', module)
+  .add('Entirely Their Own', () => <OwnEmoji />)
+  .add('Shared with Others', () => <ShareEmoji />)
+  .add('Nonexistant! (mobile)', () => <MobileEmoji />)
 
 storiesOf('Login', module)
   .add('Login Boxes', () => <SignUpForm />);
