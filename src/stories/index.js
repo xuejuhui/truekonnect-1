@@ -16,6 +16,8 @@ import ProfileBuildCard from '../Components/Reusable/Cards/ProfileBuildCard'
 
 //import NAVIGATION components here
 import NavBar from '../Components/Reusable/Navigation/NavBar';
+import ProfileButton from '../Components/Reusable/Navigation/ProfileButton'
+import MessagingButton from '../Components/Reusable/Navigation/MessagingButton'
 
 //import BUTTON components here
 import FullButton from '../Components/Reusable/Buttons/FullButton';
@@ -83,6 +85,8 @@ storiesOf('Cards', module)
 
 storiesOf('Navigation', module)
   .add('Top Navbar', () => <NavBar />)
+  .add('Profile', () => <ProfileButton />)
+  .add('Messaging', () => <MessaginButton />)
 
 storiesOf('Buttons', module)
   .add('Login', () => <FullButton ButtonText = 'Log In' />)
