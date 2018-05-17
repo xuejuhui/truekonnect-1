@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import '../emoji.css'
 
-import {} from 'reactstrap'
+import {Media} from 'reactstrap'
 
 class ChristianEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div>
+        <div class="ChristianEmoji emojis"></div>
+      </div>
     )
   }
 }

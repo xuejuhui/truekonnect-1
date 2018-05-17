@@ -6,7 +6,7 @@ import {} from 'reactstrap'
 class AsainEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div class="AsainEmoji emojis"></div>
     )
   }
 }

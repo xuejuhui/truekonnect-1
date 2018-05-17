@@ -6,7 +6,7 @@ import {} from 'reactstrap'
 class NativeEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div class="NativeEmoji emojis"></div>
     )
   }
 }

@@ -6,7 +6,7 @@ import {} from 'reactstrap'
 class BlackEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div class="BlackEmoji emojis"></div>
     )
   }
 }

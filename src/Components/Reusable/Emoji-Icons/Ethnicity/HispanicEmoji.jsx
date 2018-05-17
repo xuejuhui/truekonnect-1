@@ -6,7 +6,7 @@ import {} from 'reactstrap'
 class HispanicEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div class="HispanicEmoji emojis"></div>
     )
   }
 }

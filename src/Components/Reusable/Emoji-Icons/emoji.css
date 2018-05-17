@@ -1,0 +1,88 @@
+.emojis {
+  transform: scale(2);
+}
+
+/* Age (none, all custom) */
+
+/* Communication */
+
+.PhoneEmoji:after {
+  content: '\1F4DE';
+}
+
+.EmailEmoji:after{
+  content: "\1F4E9";
+}
+
+.CarrierPidgeonEmoji:after {
+  content: "\1F54A";
+}
+
+/* Ethnicity */
+
+.AsianEmoji:after {
+  content: "\270B\1F3FE";
+}
+
+.BlackEmoji:after {
+  content: "\270B\1F3FF";
+}
+
+.HispanicEmoji:after {
+  content: "\270B\1F3FC";
+}
+
+.NativeEmoji:after {
+  content: "\270B\1F3FD";
+}
+
+.OtherEmoji:after {
+  content: "\270B";
+}
+
+.WhiteEmoji:after {
+  content: "\270B\1F3FB";
+}
+
+/* Gender (none, all custom) */
+
+/* Money */
+
+.MoneyOne:after {
+  content: "\1F4B5";
+}
+
+/* Religion */
+
+.ChristianEmoji:after {
+  content: "\26EA";
+}
+
+.MuslimEmojiEmoji:after {
+  content: "\1F54C";
+}
+
+.JewishEmoji:after {
+  content: "\1F54D";
+}
+
+.SpiritualEmojiEmoji:after {
+  content: "\1F64F";
+}
+
+
+/* User-Types */
+
+.ClientEmoji:after {
+  content: "\1F487";
+}
+
+.StylistEmoji:after {
+  content: "\2702";
+}
+
+/* Services offered */
+
+... Emoji:after {
+  content: codepoint;
+}
