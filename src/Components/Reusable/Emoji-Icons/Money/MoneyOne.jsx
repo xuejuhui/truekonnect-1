@@ -6,7 +6,7 @@ import {} from 'reactstrap'
 class MoneyOne extends Component {
   render() {
     return (
-      <div class="MoneyOne emojis"></div>
+      <div className="MoneyOne emojis"></div>
     )
   }
 }
