@@ -24,6 +24,10 @@ const App = () =>
         component={() => <SignUpForm />}
       />
       <Route
+        exact path={routes.SIGN_IN}
+        component={() => <SignInForm />}
+      />
+      <Route
         exact path={routes.ACCOUNT}
         component={() => <StylistCard />}
       />
