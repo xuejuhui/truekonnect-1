@@ -41,6 +41,7 @@ class SignUpForm extends Component {
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
+        console.log("successful")
         history.push(routes.ACCOUNT);
 
       })

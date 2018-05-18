@@ -4,18 +4,33 @@ import {connect} from 'react-redux';
 
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
 import {getAllPersons} from "../../Redux/actions/persons";
+import { withRouter } from 'react-router-dom';
+import { SignUpLink } from './SignUpForm';
+import { auth } from '../../firebase';
+import * as routes from '../../constants/routes';
 
+const SignInPage = ({ history }) =>
+  <div>
+    <h1>SignIn</h1>
+    <SignInForm history={history} />
+    <SignUpLink />
+  </div>
+const byPropKey = (propertyName, value) => () => ({
+  [propertyName]: value,
+});
 
-class SignUpForm extends Component {
+const INITIAL_STATE = {
+  email: '',
+  error: null,
+  verificationCode: '',
+  phoneNumber: '',
+  confirmationResult: ''
+};
+
+class SignInForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            email: '',
-            password: '',
-            verificationCode: '',
-            phoneNumber: '',
-            confirmationResult: ''
-        };
+        this.state = {...INITIAL_STATE}
     }
 
     componentDidMount() {
@@ -67,31 +82,63 @@ class SignUpForm extends Component {
     handlePassTextChange = (event) => {
         this.setState({verificationCode: event.target.value})
     };
+    onSubmit = (event) => {
+    event.preventDefault();
+    const {
+      email,
+      verificationCode,
+    } = this.state;
+
+    const {
+      history,
+    } = this.props;
+
+    auth.doSignInWithEmailAndPassword(email, verificationCode)
+      .then(() => {
+        this.setState(() => ({ ...INITIAL_STATE }));
+        history.push(routes.ACCOUNT);
+      })
+      .catch(error => {
+        this.setState(byPropKey('error', error));
+      });
+
+
+    }
 
     render() {
+    const {
+      email,
+      verificationCode,
+      error,
+    } = this.state;
+
+    const isInvalid =
+      verificationCode === '' ||
+      email === '';
+
         return (
             <div>
-                <Form>
+                <Form onSubmit={this.onSubmit}>
                     <FormGroup row>
                         <Label for="exampleEmail" sm={2}>Email</Label>
                         <Col sm={8}>
-                            <Input type="email" name="email" id="exampleEmail" onChange={this.handleEmailTextChange}
-                                   value={this.state.email} placeholder="with a placeholder"/>
+                            <Input type="email" name="email" id="exampleEmail" onChange={event => this.setState(byPropKey('email', event.target.value))}
+                                   value={email} placeholder="with a placeholder"/>
                         </Col>
                     </FormGroup>
                     <FormGroup row>
                         <Label for="examplePassword" sm={2}>Password</Label>
                         <Col sm={8}>
                             <Input type="password" name="password" id="examplePassword"
-                                   onChange={this.handlePassTextChange} value={this.state.password}
+                                   onChange={event => this.setState(byPropKey('verificationCode', event.target.value))} value={verificationCode}
                                    placeholder="password placeholder"/>
                         </Col>
                     </FormGroup>
                     <FormGroup check row>
                         <Col sm={{size: 2, offset: 5}}>
-                            <Button>
-                                Submit
-                            </Button>
+                          <button disabled={isInvalid} type="submit">
+                            Sign In
+                          </button>
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -119,6 +166,7 @@ class SignUpForm extends Component {
                             </Button>
                         </Col>
                     </FormGroup>
+                    { error && <p>{error.message}</p> }
                 </Form>
             </div>
         );
@@ -127,18 +175,24 @@ class SignUpForm extends Component {
 
 
 
-const mapStateToProps = state => {
-    return {
-        persons: state.persons
-    }
+// const mapStateToProps = state => {
+//     return {
+//         persons: state.persons
+//     }
+// };
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         gap: () => {
+//             dispatch(getAllPersons())
+//         }
+//     }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)
+
+export default withRouter(SignInPage);
+
+export {
+  SignInForm,
 };
-
-const mapDispatchToProps = dispatch => {
-    return {
-        gap: () => {
-            dispatch(getAllPersons())
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
