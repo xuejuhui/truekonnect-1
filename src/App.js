@@ -13,7 +13,9 @@ import * as routes from './constants/routes';
 import PasswordForgetPage from './Components/Reusable/PasswordForget';
 import HomePage from './Components/Reusable/Home';
 import AccountPage from './Components/Reusable/Account';
-
+import withAuthentication from './withAuthentication';
+import Admin from './Components/Reusable/AdminPage';
+  
 const App = () =>
   <Router>
      <div>
@@ -35,7 +37,11 @@ const App = () =>
         exact path={routes.LANDING}
         component={() => <LandingPage />}
       />
+      <Route
+        exact path={routes.ADMIN}
+        component={() => <Admin />}
+      />
     </div>
   </Router>
 
-export default App;
+export default withAuthentication(App);
