@@ -1,7 +1,7 @@
 import React from 'react'
 import './stylist-card.css';
 import './Emoji-Icons/emoji.css'
-
+import withAuthorization from '../../withAuthorization';
 import {Container, Card, CardImg, CardText, CardBody, CardTitle, Button, Row, Col, Media} from 'reactstrap'
 
 // Import Buttons here
@@ -81,5 +81,6 @@ class StylistCard extends React.Component {
     )
   }
 }
+const authCondition = (authUser) => !!authUser;
 
-export default StylistCard
+export default withAuthorization(authCondition)(StylistCard);
