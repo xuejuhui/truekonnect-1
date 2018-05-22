@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './emoji-button.css'
 
-import {Button} from 'reactstrap'
-import PhoneEmoji from '../Emoji-Icons/Communication/PhoneEmoji'
+import {Button, Row, Column} from 'reactstrap'
+import ShareEmoji from '../Emoji-Icons/Salon-Ownership/ShareEmoji.jsx'
+import OwnEmoji from '../Emoji-Icons/Salon-Ownership/OwnEmoji.jsx'
+
 
 class EmojiButton extends Component {
     constructor(props) {
@@ -27,8 +29,8 @@ class EmojiButton extends Component {
                         outline
                         className={this.state.selected ? 'selected' : 'rounded-button active-button'}
                         onClick={this.toggleButton}>
-                    <div className='emojiImageContainer'> </div>
-                    <div>{this.props.ButtonText}</div>
+                    <div className='emoji-image-container pt-3'><ShareEmoji /><OwnEmoji /> </div>
+                    <div className='emoji-button-text pt-4'>{this.props.ButtonText}</div>
                 </Button>
             </div>
         )

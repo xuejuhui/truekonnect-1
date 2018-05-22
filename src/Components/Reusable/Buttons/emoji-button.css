@@ -1,7 +1,7 @@
 .active-button {
     color: var(--green);
     border-color: var(--green);
-    border: 1px solid;
+    border: 1em solid;
 }
 
 .active-button:hover {
@@ -28,9 +28,6 @@
     border-radius: 5px;
     border-width: .1rem;
     border-color: var(--super-light-grey);
-    font-size: .8rem;
-    text-transform: uppercase;
-    letter-spacing: .1rem;
     width: 200px;
     height: 150px;
 }
@@ -47,9 +44,19 @@
     height: 150px;
 }
 
-.emojiImageContainer {
-    height: 40%;
+.emoji-image-container {
+    /* height: 40%;
     width: 40%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emoji-button-text {
+    font-size: 1rem;
+    color: var(--dark-grey);
+    text-transform: none;
+    letter-spacing: .05rem;
 }

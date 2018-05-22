@@ -23,7 +23,7 @@ class StylistCard extends React.Component {
         <CardImg top width='100%' src='http://via.placeholder.com/400x400' />
         <CardBody>
           <Row className="clearfix pb-3">
-            <Col sm='2'>
+            <Col sm='2' className="d-flex justify-content-center">
               <Media object src="http://via.placeholder.com/42x42"  className ='rounded-circle user-profile-image' alt="Generic placeholder image" />
             </Col>
             <Col sm='9' className="align-self-center">
