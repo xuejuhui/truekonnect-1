@@ -3,7 +3,7 @@ import firebase, {recaptchaVerifier} from 'firebase';
 import {connect} from 'react-redux';
 
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
-import {getAllPersons} from "../../Redux/actions/persons";
+
 import { withRouter } from 'react-router-dom';
 import { SignUpLink } from './SignUpForm';
 import { auth } from '../../firebase';
