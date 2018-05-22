@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-eslint": "^8.1.1",
     "bootstrap": "^4.1.1",
     "express": "^4.16.2",
     "firebase": "^4.13.1",
+    "jwt-decode": "^2.2.0",
     "knex": "^0.14.3",
     "pg": "^7.4.1",
     "react": "^16.2.0",

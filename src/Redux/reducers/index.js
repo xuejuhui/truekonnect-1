@@ -1,14 +1,11 @@
 import {combineReducers} from 'redux';
 import persons from './persons';
 import sessionReducer from './session';
-import userReducer from './user';
+import authState from './authState';
 import { firebaseReducer as firebase } from "react-redux-firebase"
 
 const rootReducer = combineReducers({
-	sessionState: sessionReducer,
-  	userState: userReducer,
-	firebase,
-    persons: persons
+    authState,
 });
 
 // const rootReducer = (state, action) => {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { firebase } from './firebase';
 import AuthUserContext from './Components/AuthUserContext';
+import { auth } from './firebase';
+import jwtDecode from 'jwt-decode';
 
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
@@ -9,14 +11,18 @@ const withAuthentication = (Component) => {
 
       this.state = {
         authUser: null,
+        token:""
       };
     }
 
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
-        authUser
-          ? this.setState(() => ({ authUser }))
-          : this.setState(() => ({ authUser: null }));
+        if (authUser){
+        authUser.getIdToken().then(data => this.setState(() => ({ token: data })))
+        this.setState(() => ({ authUser }))
+        } else {
+        this.setState(() => ({ authUser: null }));
+        }
       });
     }
     render() {
