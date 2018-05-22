@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import '../emoji.css'
 
-import {} from 'reactstrap'
+import {Media} from 'reactstrap'
 
 class ChemicalPermsEmoji extends Component {
   render() {
     return (
-      <div></div>
+      <div class="ChemicalPermsEmoji emojis"></div>
     )
   }
 }

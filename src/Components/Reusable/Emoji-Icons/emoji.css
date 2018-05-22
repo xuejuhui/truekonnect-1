@@ -1,5 +1,5 @@
 .emojis {
-  transform: scale(2);
+  transform: scale(4) translateX(.15em);
 }
 
 /* Age (none, all custom) */
@@ -44,6 +44,20 @@
   content: "\270B\1F3FB";
 }
 
+/* Double-Book */
+
+.AlwaysEmoji:after {
+  content: "\1F64B";
+}
+
+.NeverEmoji:after {
+  content: "\1F645";
+}
+
+.SometimesEmoji:after {
+  content: "\1F937";
+}
+
 /* Gender (none, all custom) */
 
 /* Money */
@@ -70,6 +84,15 @@
   content: "\1F64F";
 }
 
+/* Salon-Ownership */
+
+.MobileEmoji:after {
+  content: "\1F698";
+}
+
+.OwnEmoji:after {
+  content: "\1F64B";
+}
 
 /* User-Types */
 
@@ -81,8 +104,52 @@
   content: "\2702";
 }
 
-/* Services offered */
+/* Services */
 
-... Emoji:after {
-  content: codepoint;
+.BraidsEmoji:after {
+  content: "\1F471\200D\2640\FE0F";
 }
+
+.ChemicalPermsEmoji:after {
+  content: "\1F468\200D\1F9B1";
+}
+
+.EthnicHairEmoji:after {
+  content: "\1F469\200D\1F9B1";
+}
+
+.HairColorEmoji:after {
+  content: "\1F469\200D\1F9B0";
+}
+
+.HairExtensionsEmoji:after {
+  content: "\1F471\200D\2640\FE0F";
+}
+
+.HairLossEmoji:after {
+  content: "\1F469\200D\1F9B2";
+}
+
+.KidsHaircutsEmoji:after {
+  content: "\1F467";
+}
+
+.MakeupEmoji:after {
+  content: "\1F484";
+}
+
+.MensHaircutsEmoji:after {
+  content: "\1F468";
+}
+
+.SpecialOccasionEmoji:after {
+  content: "\1F470";
+}
+
+.WomensHaircutsEmoji:after {
+  content: "\1F469";
+}
+
+/*... Emoji:after {
+  content: codepoint;
+}*/

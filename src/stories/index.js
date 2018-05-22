@@ -26,6 +26,7 @@ import XButton from '../Components/Reusable/Buttons/XButton';
 import PreviousButton from '../Components/Reusable/Buttons/PreviousButton';
 import NextButton from '../Components/Reusable/Buttons/NextButton';
 import InfoButton from '../Components/Reusable/Buttons/InfoButton';
+import EmojiButton from '../Components/Reusable/Buttons/EmojiButton';
 
 //import EMOJI components here
 import OneCandle from '../Components/Reusable/Emoji-Icons/Age/OneCandle'
@@ -135,6 +136,7 @@ storiesOf('Buttons', module)
   .add('Previous Button', () => <PreviousButton />)
   .add('Next Button', () => <NextButton />)
   .add('Info Button', () => <InfoButton />)
+  .add('Emoji Button', () => <EmojiButton ButtonText ='Gender' />)
 
 
 storiesOf('Emojis/Age', module)
