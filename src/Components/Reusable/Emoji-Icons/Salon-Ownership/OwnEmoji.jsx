@@ -6,7 +6,7 @@ import {Media} from 'reactstrap'
 class OwnEmoji extends Component {
   render() {
     return (
-      <div class="OwnEmoji emojis"></div>
+      <div className="OwnEmoji emojis"></div>
     )
   }
 }

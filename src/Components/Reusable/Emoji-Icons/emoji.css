@@ -1,5 +1,5 @@
 .emojis {
-  transform: scale(4);
+  transform: scale(4) translateX(.15em);
 }
 
 /* Age (none, all custom) */
@@ -149,3 +149,7 @@
 .WomensHaircutsEmoji:after {
   content: "\1F469";
 }
+
+/*... Emoji:after {
+  content: codepoint;
+}*/

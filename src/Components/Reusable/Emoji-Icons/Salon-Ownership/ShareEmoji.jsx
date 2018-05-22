@@ -6,7 +6,7 @@ import {Media} from 'reactstrap'
 class ShareEmoji extends Component {
   render() {
     return (
-      <Media object className="w-25" src="https://truekonnect.com/wp-content/uploads/2018/05/SalonSpace-shared@2x.png" alt="custom emoji showing two women sharing a space" />
+      <Media object className="w-50" src="https://truekonnect.com/wp-content/uploads/2018/05/SalonSpace-shared@2x.png" alt="custom emoji showing two women sharing a space" />
     )
   }
 }
