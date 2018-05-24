@@ -1,7 +1,11 @@
 import * as ACTION from '../actions/actionTypes';
 import jwtDecode from 'jwt-decode';
+import { SET_CURRENT_USER } from "../actions/actionTypes";
+import isEmpty from "lodash/isEmpty";
 
 const INITIAL_STATE = {
+  uid:null,
+  user:{},
   token: null,
   name: null,
   isAdmin: false,
@@ -106,6 +110,12 @@ function authState(state = INITIAL_STATE, action) {
         isAdmin: false,
         statusText: 'You have been successfully logged out.'
     }
+    case SET_CURRENT_USER:
+      return{
+        ...state,
+        isAuthenticated: !isEmpty(action.user),
+        user:action.user
+      }
 
     default:
       return state;

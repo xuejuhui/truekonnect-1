@@ -5,8 +5,10 @@ import AuthUserContext from '../AuthUserContext.js';
 import * as routes from '../../constants/routes';
 
 const Navigation = () =>
+
   <AuthUserContext.Consumer>
-    {authUser => authUser
+    { isAuthenticated => 
+      isAuthenticated 
       ? <NavigationAuth />
       : <NavigationNonAuth />
     }

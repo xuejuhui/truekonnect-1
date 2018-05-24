@@ -1,8 +1,12 @@
 import axios from 'axios';
 import * as ACTION from './actionTypes';
-import { pushState } from 'react-router-redux';
-import { browserHistory } from 'react-router';
-
+// import { pushState } from 'react-router-redux';
+// import { browserHistory } from 'react-router';
+import { firebase } from '../../firebase';
+import setAuthorizationToken from "../../setAuthorizationToken"
+import jwtDecode from 'jwt-decode';
+import { SET_CURRENT_USER } from "./actionTypes" 
+// import { auth } from '../../firebase';
 export function loginUserSuccess(token) {
   localStorage.setItem('token', token);
   return {
@@ -40,41 +44,67 @@ export function loginUserRequest() {
   }
 }
 
-export function logout() {
-  localStorage.removeItem('token');
-  return {
-    type: ACTION.LOGOUT_USER
-  }
-}
+// export function logout() {
+//   localStorage.removeItem('token');
+//   return {
+//     type: ACTION.LOGOUT_USER
+//   }
+// }
 
-export function logoutAndRedirect() {
-  return (dispatch, state) => {
-    dispatch(logout());
-    dispatch(pushState('/login'));
-  }
-}
+// export function logoutAndRedirect() {
+//   return (dispatch, state) => {
+//     dispatch(logout());
+//     dispatch(pushState('/login'));
+//   }
+// }
 
-export function loginUser() {
-  return function (dispatch, getState) {
-    const form = getState().form;
-    return axios.post('/api/auth', form.login.values)
-      .then((response) => {
-        try {
-          dispatch(loginUserSuccess(response.data));
-          browserHistory.push('/');
-          const router = getState().routing.locationBeforeTransitions.query.redirectAfterLogin
-        } catch (e) {
-          dispatch(loginUserFailure({
-            response: {
-              status: 403,
-              statusText: 'Invalid token'
-            }
-          }));
-        }
-      }, (error) => {
-        dispatch(loginUserFailure(error));
-      });
-  }
+// export function loginUser() {
+//   return function (dispatch, getState) {
+//     return axios.post('/api/auth', form.login.values)
+//       .then((response) => {
+//         try {
+//           dispatch(loginUserSuccess(response.data));
+//           browserHistory.push('/');
+//           const router = getState().routing.locationBeforeTransitions.query.redirectAfterLogin
+//         } catch (e) {
+//           dispatch(loginUserFailure({
+//             response: {
+//               status: 403,
+//               statusText: 'Invalid token'
+//             }
+//           }));
+//         }
+//       }, (error) => {
+//         dispatch(loginUserFailure(error));
+//       });
+//   }
+// }
+export function logout(){
+	return dispatch=>{
+		firebase.auth.signOut();
+	   	localStorage.removeItem("jwtToken");
+	   	setAuthorizationToken(false)
+	   	dispatch(setCurrentUser({}))
+	}
+}
+export function login() {
+	return dispatch =>{
+		return  firebase.auth.onAuthStateChanged(authUser => {
+        if (authUser){
+        authUser.getIdToken().then(data => {
+        	const token = data;
+        	localStorage.setItem("jwtToken", token)
+        	setAuthorizationToken(token)
+        	dispatch(setCurrentUser(jwtDecode(token)))
+        });
+	}
+})}}
+
+export function setCurrentUser(user){
+	return {
+		type: SET_CURRENT_USER,
+		user
+	}
 }
 
 export function registrationUserSuccess(user) {

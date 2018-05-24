@@ -1,42 +1,34 @@
 import React from 'react';
-import { firebase } from './firebase';
 import AuthUserContext from './Components/AuthUserContext';
-import { auth } from './firebase';
-import jwtDecode from 'jwt-decode';
+import { connect } from "react-redux"
+import { login } from "./Redux/actions/auth"
+import setAuthorizationToken from "./setAuthorizationToken"
 
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
-  	constructor(props) {
-      super(props);
-
-      this.state = {
-        authUser: null,
-        token:""
-      };
-    }
-
     componentDidMount() {
-      firebase.auth.onAuthStateChanged(authUser => {
-        if (authUser){
-        authUser.getIdToken().then(data => this.setState(() => ({ token: data })))
-        this.setState(() => ({ authUser }))
-        } else {
-        this.setState(() => ({ authUser: null }));
-        }
-      });
+      this.props.login();
     }
+
     render() {
-    const { authUser } = this.state;
-          console.log(authUser)
+    setAuthorizationToken(localStorage.jwtToken);
+    const { isAuthenticated } = this.props
       return (
-        <AuthUserContext.Provider value={authUser}>
+        <AuthUserContext.Provider value={ isAuthenticated }>
           <Component />
         </AuthUserContext.Provider>
+    
       );
     }
   }
 
-  return WithAuthentication;
+  function mapStateToProps(state){
+    return{
+      isAuthenticated:state.authState.isAuthenticated
+    }
+  }
+
+  return connect(mapStateToProps, { login })(WithAuthentication);
 }
 
 export default withAuthentication;
