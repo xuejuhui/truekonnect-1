@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './App.css';
 import { 
 	BrowserRouter as Router,
@@ -15,6 +15,7 @@ import HomePage from './Components/Reusable/Home';
 import AccountPage from './Components/Reusable/Account';
 import withAuthentication from './withAuthentication';
 import Admin from './Components/Reusable/AdminPage';
+
   
 const App = () =>
   <Router>
@@ -45,3 +46,4 @@ const App = () =>
   </Router>
 
 export default withAuthentication(App);
+

@@ -1,13 +1,27 @@
 import React from 'react';
+import { connect } from "react-redux"
+import { logout } from "../../Redux/actions/auth"
 
-import { auth } from '../../firebase';
+class SignOut extends React.Component {
 
-const SignOutButton = () =>
-  <button
+	logout(e){
+		e.preventDefault();
+		this.props.logout();
+	}
+	render() {
+		return (
+			<div>
+				  <button
     type="button"
-    onClick={auth.doSignOut}
+    onClick={this.logout.bind(this)}
   >
     Sign Out
   </button>
+			</div>
+		);
+	}
+}
 
-export default SignOutButton;
+
+
+export default connect(null, { logout })(SignOut);
