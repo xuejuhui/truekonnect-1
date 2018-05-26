@@ -1,13 +1,14 @@
 import React, {Component} from "react";
-import firebase, {recaptchaVerifier} from 'firebase';
+import firebase from 'firebase';
 import {connect} from 'react-redux';
 
 import {Form, FormGroup, Col, Label, Input, Button} from 'reactstrap';
 
 import { withRouter } from 'react-router-dom';
 import { SignUpLink } from './SignUpForm';
-import { auth } from '../../firebase';
+// import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import { phoneLogin, signIn } from  "../../Redux/actions/auth"
 
 const SignInPage = ({ history }) =>
   <div>
@@ -34,6 +35,7 @@ class SignInForm extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(this.recaptcha, {
             'size': 'invisible',
             'callback': (response) => {
@@ -54,26 +56,10 @@ class SignInForm extends Component {
         if (phoneNumber === '') {
             return alert('Must fill in all fields')
         }
-        this.phoneLogin()
+        let appVerifier = window.recaptchaVerifier;
+        this.props.phoneLogin(phoneNumber, appVerifier)
     };
 
-    phoneLogin = () => {
-        const phoneNumber = '+1' + this.state.phoneNumber;
-        let appVerifier = window.recaptchaVerifier;
-        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-            .then(function (confirmationResult) {
-                let code = prompt(`We have sent a code to ${phoneNumber}, please enter it here`, "");
-                if (code) {
-                    confirmationResult.confirm(code).then(function (result) {
-                        alert('Successfully logged in!')
-                    }).catch(function (error) {
-                        alert(error.message)
-                    });
-                }
-            }).catch(function (error) {
-            alert(error.message)
-        });
-    }
 
     handlePhoneNumberTextChange = (event) => {
         this.setState({phoneNumber: event.target.value})
@@ -92,19 +78,10 @@ class SignInForm extends Component {
     const {
       history,
     } = this.props;
+    this.props.signIn(email, verificationCode)
+    history.push(routes.ACCOUNT);
 
-    auth.doSignInWithEmailAndPassword(email, verificationCode)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.ACCOUNT);
-      })
-      .catch(error => {
-        this.setState(byPropKey('error', error));
-      });
-
-
-    }
-
+}
     render() {
     const {
       email,
@@ -122,14 +99,14 @@ class SignInForm extends Component {
                     <FormGroup row>
                         <Label for="exampleEmail" sm={2}>Email</Label>
                         <Col sm={8}>
-                            <Input type="email" name="email" id="exampleEmail" onChange={event => this.setState(byPropKey('email', event.target.value))}
+                            <Input type="email" autoComplete='email' name="email" id="exampleEmail" onChange={event => this.setState(byPropKey('email', event.target.value))}
                                    value={email} placeholder="with a placeholder"/>
                         </Col>
                     </FormGroup>
                     <FormGroup row>
                         <Label for="examplePassword" sm={2}>Password</Label>
                         <Col sm={8}>
-                            <Input type="password" name="password" id="examplePassword"
+                            <Input type="password" autoComplete='currentPassword' name="password" id="examplePassword"
                                    onChange={event => this.setState(byPropKey('verificationCode', event.target.value))} value={verificationCode}
                                    placeholder="password placeholder"/>
                         </Col>
@@ -146,6 +123,7 @@ class SignInForm extends Component {
                         <Col sm={8}>
                             <Input
                                 type="text"
+                                autoComplete='tel-national'
                                 name="phoneNumber"
                                 id="examplePhoneNumber"
                                 onChange={this.handlePhoneNumberTextChange}
@@ -174,24 +152,7 @@ class SignInForm extends Component {
 }
 
 
-
-// const mapStateToProps = state => {
-//     return {
-//         persons: state.persons
-//     }
-// };
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         gap: () => {
-//             dispatch(getAllPersons())
-//         }
-//     }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)
-
-export default withRouter(SignInPage);
+export default withRouter(connect(null, { phoneLogin, signIn })(SignInForm));
 
 export {
   SignInForm,

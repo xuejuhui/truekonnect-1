@@ -7,7 +7,7 @@ import setAuthorizationToken from "./setAuthorizationToken"
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
     componentDidMount() {
-      this.props.login();
+      // this.props.login();
     }
 
     render() {
