@@ -1,6 +1,6 @@
 import * as ACTION from '../actions/actionTypes';
 import jwtDecode from 'jwt-decode';
-import { SET_CURRENT_USER } from "../actions/actionTypes";
+import { SET_CURRENT_USER, SET_USER_PROFILE } from "../actions/actionTypes";
 import isEmpty from "lodash/isEmpty";
 
 const INITIAL_STATE = {
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   isAuthenticating: false,
   statusText: null,
   hasError: false,
-  registrationMessage: null
+  registrationMessage: null,
 };
 
 function authState(state = INITIAL_STATE, action) {

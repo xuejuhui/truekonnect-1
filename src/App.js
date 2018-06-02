@@ -42,6 +42,10 @@ const App = () =>
         exact path={routes.ADMIN}
         component={() => <Admin />}
       />
+        <Route
+        exact path={routes.HOME}
+        component={() => <HomePage />}
+      />
     </div>
   </Router>
 
